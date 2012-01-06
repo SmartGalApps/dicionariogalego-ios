@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BAF24C1B14B702ED00B4F0A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C1A14B702ED00B4F0A3 /* UIKit.framework */; };
+		BAF24C1D14B702ED00B4F0A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C1C14B702ED00B4F0A3 /* Foundation.framework */; };
+		BAF24C1F14B702ED00B4F0A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C1E14B702ED00B4F0A3 /* CoreGraphics.framework */; };
+		BAF24C2514B702ED00B4F0A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C2314B702ED00B4F0A3 /* InfoPlist.strings */; };
+		BAF24C2714B702ED00B4F0A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF24C2614B702ED00B4F0A3 /* main.m */; };
+		BAF24C2B14B702ED00B4F0A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF24C2A14B702ED00B4F0A3 /* AppDelegate.m */; };
+		BAF24C2E14B702ED00B4F0A3 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C2C14B702ED00B4F0A3 /* MainStoryboard_iPhone.storyboard */; };
+		BAF24C3114B702ED00B4F0A3 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C2F14B702ED00B4F0A3 /* MainStoryboard_iPad.storyboard */; };
+		BAF24C3414B702ED00B4F0A3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF24C3314B702ED00B4F0A3 /* ViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BAF24C1614B702ED00B4F0A3 /* DicionarioGalego.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DicionarioGalego.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF24C1A14B702ED00B4F0A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BAF24C1C14B702ED00B4F0A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BAF24C1E14B702ED00B4F0A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BAF24C2214B702ED00B4F0A3 /* DicionarioGalego-Info.plist */ = {isa = PBXFileReference; path = "DicionarioGalego-Info.plist"; sourceTree = "<group>"; };
+		BAF24C2414B702ED00B4F0A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BAF24C2614B702ED00B4F0A3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BAF24C2814B702ED00B4F0A3 /* DicionarioGalego-Prefix.pch */ = {isa = PBXFileReference; path = "DicionarioGalego-Prefix.pch"; sourceTree = "<group>"; };
+		BAF24C2914B702ED00B4F0A3 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		BAF24C2A14B702ED00B4F0A3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BAF24C2D14B702ED00B4F0A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		BAF24C3014B702ED00B4F0A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		BAF24C3214B702ED00B4F0A3 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		BAF24C3314B702ED00B4F0A3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BAF24C1314B702ED00B4F0A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAF24C1B14B702ED00B4F0A3 /* UIKit.framework in Frameworks */,
+				BAF24C1D14B702ED00B4F0A3 /* Foundation.framework in Frameworks */,
+				BAF24C1F14B702ED00B4F0A3 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BAF24C0B14B702EC00B4F0A3 = {
+			isa = PBXGroup;
+			children = (
+				BAF24C2014B702ED00B4F0A3 /* DicionarioGalego */,
+				BAF24C1914B702ED00B4F0A3 /* Frameworks */,
+				BAF24C1714B702ED00B4F0A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BAF24C1714B702ED00B4F0A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BAF24C1614B702ED00B4F0A3 /* DicionarioGalego.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BAF24C1914B702ED00B4F0A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BAF24C1A14B702ED00B4F0A3 /* UIKit.framework */,
+				BAF24C1C14B702ED00B4F0A3 /* Foundation.framework */,
+				BAF24C1E14B702ED00B4F0A3 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BAF24C2014B702ED00B4F0A3 /* DicionarioGalego */ = {
+			isa = PBXGroup;
+			children = (
+				BAF24C2914B702ED00B4F0A3 /* AppDelegate.h */,
+				BAF24C2A14B702ED00B4F0A3 /* AppDelegate.m */,
+				BAF24C2C14B702ED00B4F0A3 /* MainStoryboard_iPhone.storyboard */,
+				BAF24C2F14B702ED00B4F0A3 /* MainStoryboard_iPad.storyboard */,
+				BAF24C3214B702ED00B4F0A3 /* ViewController.h */,
+				BAF24C3314B702ED00B4F0A3 /* ViewController.m */,
+				BAF24C2114B702ED00B4F0A3 /* Supporting Files */,
+			);
+			path = DicionarioGalego;
+			sourceTree = "<group>";
+		};
+		BAF24C2114B702ED00B4F0A3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BAF24C2214B702ED00B4F0A3 /* DicionarioGalego-Info.plist */,
+				BAF24C2314B702ED00B4F0A3 /* InfoPlist.strings */,
+				BAF24C2614B702ED00B4F0A3 /* main.m */,
+				BAF24C2814B702ED00B4F0A3 /* DicionarioGalego-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BAF24C1514B702ED00B4F0A3 /* DicionarioGalego */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAF24C3714B702ED00B4F0A3 /* Build configuration list for PBXNativeTarget "DicionarioGalego" */;
+			buildPhases = (
+				BAF24C1214B702ED00B4F0A3 /* Sources */,
+				BAF24C1314B702ED00B4F0A3 /* Frameworks */,
+				BAF24C1414B702ED00B4F0A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DicionarioGalego;
+			productName = DicionarioGalego;
+			productReference = BAF24C1614B702ED00B4F0A3 /* DicionarioGalego.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BAF24C0D14B702EC00B4F0A3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = ninguna;
+			};
+			buildConfigurationList = BAF24C1014B702EC00B4F0A3 /* Build configuration list for PBXProject "DicionarioGalego" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BAF24C0B14B702EC00B4F0A3;
+			productRefGroup = BAF24C1714B702ED00B4F0A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BAF24C1514B702ED00B4F0A3 /* DicionarioGalego */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BAF24C1414B702ED00B4F0A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAF24C2514B702ED00B4F0A3 /* InfoPlist.strings in Resources */,
+				BAF24C2E14B702ED00B4F0A3 /* MainStoryboard_iPhone.storyboard in Resources */,
+				BAF24C3114B702ED00B4F0A3 /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BAF24C1214B702ED00B4F0A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAF24C2714B702ED00B4F0A3 /* main.m in Sources */,
+				BAF24C2B14B702ED00B4F0A3 /* AppDelegate.m in Sources */,
+				BAF24C3414B702ED00B4F0A3 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BAF24C2314B702ED00B4F0A3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BAF24C2414B702ED00B4F0A3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BAF24C2C14B702ED00B4F0A3 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BAF24C2D14B702ED00B4F0A3 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		BAF24C2F14B702ED00B4F0A3 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BAF24C3014B702ED00B4F0A3 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BAF24C3514B702ED00B4F0A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BAF24C3614B702ED00B4F0A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BAF24C3814B702ED00B4F0A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DicionarioGalego/DicionarioGalego-Prefix.pch";
+				INFOPLIST_FILE = "DicionarioGalego/DicionarioGalego-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BAF24C3914B702ED00B4F0A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DicionarioGalego/DicionarioGalego-Prefix.pch";
+				INFOPLIST_FILE = "DicionarioGalego/DicionarioGalego-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BAF24C1014B702EC00B4F0A3 /* Build configuration list for PBXProject "DicionarioGalego" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAF24C3514B702ED00B4F0A3 /* Debug */,
+				BAF24C3614B702ED00B4F0A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAF24C3714B702ED00B4F0A3 /* Build configuration list for PBXNativeTarget "DicionarioGalego" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAF24C3814B702ED00B4F0A3 /* Debug */,
+				BAF24C3914B702ED00B4F0A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BAF24C0D14B702EC00B4F0A3 /* Project object */;
+}
