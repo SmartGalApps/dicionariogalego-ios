@@ -1,0 +1,84 @@
+@font-face { 
+    font-family: "CantarellRegular"; 
+    src: url('CantarellRegular.ttf'); 
+}
+@font-face { 
+    font-family: "CantarellBold"; 
+    src: url('CantarellBold.ttf'); 
+}
+@font-face { 
+    font-family: "CantarellBoldOblique"; 
+    src: url('CantarellBoldOblique.ttf'); 
+}
+
+
+
+
+
+body {
+	background: #FF000000;
+	color: #444444;
+}
+.cuadro {
+	width: 360px;
+	height: 480px;
+	overflow: scroll;
+	background: url('fondo.png');
+}
+b, b > i {
+	margin: 0 2px;
+	color: #777777;
+}
+i {
+	color: #3399CC;
+	font-family:'CantarellBoldOblique', Verdana, sans-serif;
+	font-size:14px;
+}
+.title {
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	padding: 10px;
+	margin: 0px 5px;
+	margin-top: 20px;
+	clear: both;
+	text-align: center;	
+	background-color:#333333;
+	overflow: hidden;
+	height: 40px;
+	border-bottom:solid #000000 3px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#545454), color-stop(100%,#333333)) no-repeat scroll 0 0 #545454 ; /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #545454 0%,#333333 100%)  no-repeat scroll 0 0 #545454; /* Chrome10+,Safari5.1+ */
+	background: linear-gradient(top,  #545454 0%,#333333 100%)  no-repeat scroll 0 0 #545454; /* W3C */
+}
+.word {
+    color: #FFFFFF;
+    font-family: 'CantarellBold',Verdana,sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    height: 100%;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+.content {
+	font-family: 'CantarellRegular', Verdana, sans-serif;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	clear: both;
+	padding:15px 8px;
+	padding-bottom: 10px;
+	background: #EEEEEE;
+	margin: 0 5px;
+	margin-bottom: 50px;
+	font-size: 16px;
+	text-align: justify;
+	opacity:0.9;
+}
+.wordInside {
+	font-size: 20px;
+	clear:left;
+	float:left;
+}
+.number {
+	font-family: 'CantarellBold', Verdana, sans-serif;
+	color: #FF7A00;
+}
