@@ -44,6 +44,8 @@
     [super viewDidLoad];
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSURL *baseURL = [NSURL fileURLWithPath:path];
+    self.webView.opaque = NO;
+    self.webView.backgroundColor = [UIColor clearColor];
     [self.webView loadHTMLString:self.html baseURL:baseURL];
 }
 
