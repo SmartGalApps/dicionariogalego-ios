@@ -24,24 +24,33 @@
 
     if (error) {
         NSLog(@"Error: %@", error);
-        return @"<html><head><body>yeha</body></html>";
+        return @"<html><head><body>Error</body></html>";
     }
     HTMLNode *bodyNode = [parser body];
     
     NSArray *linkNodes = [bodyNode findChildTags:@"a"];
+    NSMutableArray* optionsLinks = [[NSMutableArray alloc] init];
     NSMutableArray* options = [[NSMutableArray alloc] init];
     for (HTMLNode *linkNode in linkNodes) {
         NSString* href = [linkNode getAttributeNamed:@"href"];
+        NSString* value = [linkNode contents];
         if ([href rangeOfString:@"ListaDefinicion"].location != NSNotFound) {
-            [options addObject:href];
+            [optionsLinks addObject:href];
+            [options addObject:value];
         }
     }
-    // Hay opciones
-    for (NSString *href in options) {
-        NSLog(@"%@", href);
+    if ([optionsLinks count] != 0) {
+        NSMutableString *result = [[NSMutableString alloc] initWithString:@"options:"];
+        for (int i = 0; i < [optionsLinks count]; i++) {
+            [result appendString:[optionsLinks objectAtIndex:i]];
+            [result appendString:@"|"];
+            [result appendString:[options objectAtIndex:i]];
+            [result appendString:@","];
+        }
+        return result;
     }
     // No hay opciones, está la definición
-    if ([options count] == 0) {
+    if ([optionsLinks count] == 0) {
         NSArray *fontNodes = [bodyNode findChildTags:@"font"];
         // Sólo debe haber uno, el que nos interesa
         for (HTMLNode *fontNode in fontNodes) {

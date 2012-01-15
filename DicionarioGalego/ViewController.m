@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "DefineViewController.h"
+#import "OptionsViewController.h"
 #import "ASIHTTPRequest.h"
 #import "Parser.h"
 
@@ -106,6 +107,26 @@
         defineViewController.html = self.html;
         defineViewController.term = self.termTextField.text;
 	}
+    else if ([segue.identifier isEqualToString:@"ShowOptions"])
+    {
+        NSMutableArray *optionsTemp = [[NSMutableArray alloc] initWithArray: [[self.html substringFromIndex:8] componentsSeparatedByString:@","]];
+        [optionsTemp removeLastObject];
+        
+        NSMutableArray *optionsLinks = [[NSMutableArray alloc] init];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [optionsTemp count]; i++)
+        {
+            NSString *optionTemp = [optionsTemp objectAtIndex:i];
+            NSArray *optionTempSplit = [optionTemp componentsSeparatedByString:@"|"];
+            [optionsLinks insertObject:[[optionTempSplit objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] atIndex:i];
+            [options insertObject:[[optionTempSplit objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] atIndex:i];
+        }
+        
+        OptionsViewController *optionsViewController = 
+        segue.destinationViewController;
+        optionsViewController.theOptionsLinks = optionsLinks;
+        optionsViewController.theOptions = options;
+    }
 }
 
 - (IBAction)searchButton:(id)sender {
@@ -147,12 +168,15 @@
     Parser *parser = [[Parser alloc] init];
     parser.word = self.termTextField.text;
     self.html = [parser parse:responseString];
-    
+    [self dismissAlert];
+    if ([self.html hasPrefix:@"options:"]) {
+        [self performSegueWithIdentifier:@"ShowOptions" sender:self];
+        return;
+    } 
     if ([self.html length] == 0) {
         NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"O termo \'%@\' non se atopa no dicionario", nil), self.termTextField.text];
         UIAlertView *info = [[UIAlertView alloc] 
                              initWithTitle:nil message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles: nil];
-        [self dismissAlert];
         [info show];
         return;
     }

@@ -14,6 +14,7 @@
 		BA1ABBD614C1B1DF00C55CAE /* CantarellBoldOblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA1ABBD214C1B1DF00C55CAE /* CantarellBoldOblique.ttf */; };
 		BA1ABBD714C1B1DF00C55CAE /* CantarellRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA1ABBD314C1B1DF00C55CAE /* CantarellRegular.ttf */; };
 		BA1ABBD814C1B1DF00C55CAE /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = BA1ABBD414C1B1DF00C55CAE /* styles.css */; };
+		BA1ABBDE14C2F96F00C55CAE /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1ABBDD14C2F96F00C55CAE /* OptionsViewController.m */; };
 		BAF24C1B14B702ED00B4F0A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C1A14B702ED00B4F0A3 /* UIKit.framework */; };
 		BAF24C1D14B702ED00B4F0A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C1C14B702ED00B4F0A3 /* Foundation.framework */; };
 		BAF24C1F14B702ED00B4F0A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C1E14B702ED00B4F0A3 /* CoreGraphics.framework */; };
@@ -58,6 +59,8 @@
 		BA1ABBD214C1B1DF00C55CAE /* CantarellBoldOblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CantarellBoldOblique.ttf; sourceTree = "<group>"; };
 		BA1ABBD314C1B1DF00C55CAE /* CantarellRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CantarellRegular.ttf; sourceTree = "<group>"; };
 		BA1ABBD414C1B1DF00C55CAE /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
+		BA1ABBDC14C2F96F00C55CAE /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
+		BA1ABBDD14C2F96F00C55CAE /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
 		BAF24C1614B702ED00B4F0A3 /* DicionarioGalego.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DicionarioGalego.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF24C1A14B702ED00B4F0A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BAF24C1C14B702ED00B4F0A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -214,6 +217,8 @@
 				BAF24C7914B7063B00B4F0A3 /* DefineViewController.m */,
 				BAF24C7B14B7067000B4F0A3 /* Parser.h */,
 				BAF24C7C14B7067000B4F0A3 /* Parser.m */,
+				BA1ABBDC14C2F96F00C55CAE /* OptionsViewController.h */,
+				BA1ABBDD14C2F96F00C55CAE /* OptionsViewController.m */,
 			);
 			path = DicionarioGalego;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				BAF24C7D14B7067000B4F0A3 /* Parser.m in Sources */,
 				BA1ABBCB14C1A16B00C55CAE /* HTMLNode.m in Sources */,
 				BA1ABBCC14C1A16C00C55CAE /* HTMLParser.m in Sources */,
+				BA1ABBDE14C2F96F00C55CAE /* OptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
