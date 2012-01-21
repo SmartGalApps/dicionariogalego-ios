@@ -50,12 +50,10 @@
     [super viewDidLoad];
     if (self.termToDefine != nil)
     {
-        [[self navigationController] setToolbarHidden:NO];
         [self grabURLInBackground:self];
     }
     else
     {
-        [[self navigationController] setToolbarHidden:YES];
         NSString *path = [[NSBundle mainBundle] bundlePath];
         NSURL *baseURL = [NSURL fileURLWithPath:path];
         self.webView.opaque = NO;
