@@ -156,7 +156,6 @@
                                              options:0
                                                range:NSMakeRange(0, [html length])];
                 }
-                NSLog(@"%@", html);
                 [self.delegate doOnDefine:html];
                 return;
 //                return html;

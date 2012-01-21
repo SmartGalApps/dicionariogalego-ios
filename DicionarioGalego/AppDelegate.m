@@ -25,15 +25,19 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-//    ViewController *viewController = [[[[self window] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"ViewController"];
-    
     NSString *term = [[url absoluteString] substringFromIndex:8];
     if (self.defineViewController == nil)
     {
         DefineViewController *theDefineViewController = [[[[self window] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"DefineViewController"];
 
         self.defineViewController = theDefineViewController;
-    } 
+        self.defineViewController.termToDefine = term;
+    }
+    else
+    {
+        self.defineViewController.termToDefine = term;
+        [self.defineViewController grabURLInBackground:self];
+    }
     if (self.viewController == nil)
     {
         ViewController *theViewController = [[[[self window] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"ViewController"];
@@ -41,8 +45,6 @@
         self.viewController = theViewController;
     } 
 
-    self.defineViewController.termToDefine = term;
-    
     UINavigationController *mainViewNavController = [[UINavigationController alloc] init];
     
     if (viewController != nil)
@@ -54,6 +56,7 @@
     {
         [mainViewNavController pushViewController:self.defineViewController animated:FALSE];
     }
+
     [self.window setRootViewController:mainViewNavController];
     return YES;
 }

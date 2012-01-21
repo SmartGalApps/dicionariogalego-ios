@@ -50,10 +50,12 @@
     [super viewDidLoad];
     if (self.termToDefine != nil)
     {
+        [[self navigationController] setToolbarHidden:NO];
         [self grabURLInBackground:self];
     }
     else
     {
+        [[self navigationController] setToolbarHidden:YES];
         NSString *path = [[NSBundle mainBundle] bundlePath];
         NSURL *baseURL = [NSURL fileURLWithPath:path];
         self.webView.opaque = NO;
@@ -79,11 +81,17 @@
 
 - (IBAction)grabURLInBackground:(id)sender
 {
+    [Helper showAlert];
     NSURL *url = [Helper getUrl:self.termToDefine];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];
     [request startAsynchronous];
+    
+}
+
+- (IBAction)exit:(id)sender {
+    [[self navigationController] popViewControllerAnimated:TRUE];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -113,6 +121,7 @@
     NSURL *baseURL = [NSURL fileURLWithPath:path];
     self.webView.opaque = NO;
     self.webView.backgroundColor = [UIColor clearColor];
+    NSLog(@"%@", self.html);
     [self.webView loadHTMLString:self.html baseURL:baseURL]; 
 }
 -(void) doOnOptions:(NSArray *)theOptions optionsLinks:(NSArray *)theOptionsLinks

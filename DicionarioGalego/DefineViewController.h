@@ -26,4 +26,5 @@
 
 - (IBAction)grabURLInBackground:(id)sender;
 
+- (IBAction)exit:(id)sender;
 @end
