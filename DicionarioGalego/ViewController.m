@@ -11,6 +11,7 @@
 #import "OptionsViewController.h"
 #import "ASIHTTPRequest.h"
 #import "Parser.h"
+#import "Helper.h"
 
 @implementation ViewController
 @synthesize html;
@@ -19,6 +20,8 @@
 @synthesize loadingAlert;
 @synthesize searchButton;
 @synthesize scrollView;
+@synthesize optionsLinks;
+@synthesize options;
 
 - (void)didReceiveMemoryWarning
 {
@@ -85,7 +88,7 @@
     }
     if ([self.termTextField.text length] > 0) {
         [self grabURLInBackground:self];
-        [self showAlert];
+        [Helper showAlert];
     }
 }
 
@@ -101,7 +104,6 @@
 {
 	if ([segue.identifier isEqualToString:@"Define"])
 	{
-        [self dismissAlert];
 		DefineViewController *defineViewController = 
         segue.destinationViewController;
         defineViewController.html = self.html;
@@ -109,23 +111,10 @@
 	}
     else if ([segue.identifier isEqualToString:@"ShowOptions"])
     {
-        NSMutableArray *optionsTemp = [[NSMutableArray alloc] initWithArray: [[self.html substringFromIndex:8] componentsSeparatedByString:@","]];
-        [optionsTemp removeLastObject];
-        
-        NSMutableArray *optionsLinks = [[NSMutableArray alloc] init];
-        NSMutableArray *options = [[NSMutableArray alloc] init];
-        for (int i = 0; i < [optionsTemp count]; i++)
-        {
-            NSString *optionTemp = [optionsTemp objectAtIndex:i];
-            NSArray *optionTempSplit = [optionTemp componentsSeparatedByString:@"|"];
-            [optionsLinks insertObject:[[optionTempSplit objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] atIndex:i];
-            [options insertObject:[[optionTempSplit objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] atIndex:i];
-        }
-        
         OptionsViewController *optionsViewController = 
         segue.destinationViewController;
-        optionsViewController.theOptionsLinks = optionsLinks;
-        optionsViewController.theOptions = options;
+        optionsViewController.theOptionsLinks = self.optionsLinks;
+        optionsViewController.theOptions = self.options;
     }
 }
 
@@ -133,27 +122,9 @@
     [self search];
 }
 
--(void)showAlert {
-    self.loadingAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Buscando definición...", nil) 
-                                                   message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
-    [self.loadingAlert show];
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    
-    indicator.center = CGPointMake(self.loadingAlert.bounds.size.width / 2, self.loadingAlert.bounds.size.height - 50);
-    [indicator startAnimating];
-    [self.loadingAlert addSubview:indicator];
-}
-
--(void)dismissAlert {
-    [self.loadingAlert dismissWithClickedButtonIndex:0 animated:YES];
-}
-
 - (IBAction)grabURLInBackground:(id)sender
 {
-    NSMutableString *urlString = [NSMutableString string];
-    [urlString appendString:@"http://www.edu.xunta.es/diccionarios/BuscaTermo.jsp?Termo="];
-    [urlString appendString:self.termTextField.text];
-    NSURL *url = [NSURL URLWithString:urlString];
+    NSURL *url = [Helper getUrl:self.termTextField.text];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];
@@ -166,28 +137,47 @@
     NSString *responseString = [request responseString];
     
     Parser *parser = [[Parser alloc] init];
+    parser.delegate = self;
     parser.word = self.termTextField.text;
-    self.html = [parser parse:responseString];
-    [self dismissAlert];
-    if ([self.html hasPrefix:@"options:"]) {
-        [self performSegueWithIdentifier:@"ShowOptions" sender:self];
-        return;
-    } 
-    if ([self.html length] == 0) {
-        NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"O termo \'%@\' non se atopa no dicionario", nil), self.termTextField.text];
-        UIAlertView *info = [[UIAlertView alloc] 
-                             initWithTitle:nil message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles: nil];
-        [info show];
-        return;
-    }
-    
-    [self performSegueWithIdentifier:@"Define" sender:self];    
+    [parser parse:responseString];
+    [Helper dismissAlert];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - ParserDelegate methods
+
+-(void) doOnDefine:(NSString *)definition
+{
+    self.html = definition;
+    [self performSegueWithIdentifier:@"Define" sender:self]; 
+}
+-(void) doOnOptions:(NSArray *)theOptions optionsLinks:(NSArray *)theOptionsLinks
+{
+    self.options = theOptions;
+    self.optionsLinks = theOptionsLinks;
+    [self performSegueWithIdentifier:@"ShowOptions" sender:self];
+}
+-(void) doOnNotFound
+{
+    NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"O termo \'%@\' non se atopa no dicionario", nil), self.termTextField.text];
+    UIAlertView *info = [[UIAlertView alloc] 
+                         initWithTitle:nil message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles: nil];
+    [info show];
+}
+-(void) doOnError
+{
+    NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"Houbo un erro. Por favor, volve tentalo máis tarde.", nil)];
+    UIAlertView *info = [[UIAlertView alloc] 
+                         initWithTitle:nil message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles: nil];
+    [info show];
+}
+
+#pragma end
+
 
 - (void)registerForKeyboardNotifications
 {

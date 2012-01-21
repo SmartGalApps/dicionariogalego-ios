@@ -10,6 +10,7 @@
 #import "DefineViewController.h"
 #import "ASIHTTPRequest.h"
 #import "Parser.h"
+#import "Helper.h"
 
 @implementation OptionsViewController
 @synthesize options;
@@ -18,7 +19,6 @@
 @synthesize selected;
 @synthesize selectedLink;
 @synthesize html;
-@synthesize loadingAlert;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,8 +44,8 @@
 - (void)loadView
 {
 }
-*/
 
+*/
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -53,6 +53,7 @@
     [super viewDidLoad];
     self.selected = [self.theOptions objectAtIndex:0];
     self.selectedLink = [self.theOptionsLinks objectAtIndex:0];
+    NSLog(@"--- %d", [self.theOptions count]);
 }
 
 
@@ -72,7 +73,7 @@
 
 - (IBAction)search:(id)sender {
     [self grabURLInBackground:self];
-    [self showAlert];
+    [Helper showAlert];
 }
 
 
@@ -123,18 +124,42 @@ numberOfRowsInComponent:(NSInteger)component
     NSString *responseString = [request responseString];
     
     Parser *parser = [[Parser alloc] init];
+    parser.delegate = self;
     parser.word = self.selected;
-    self.html = [parser parse:responseString];
-    
-    [self performSegueWithIdentifier:@"DefineOption" sender:self]; 
-    [self dismissAlert];
+    [parser parse:responseString];
+    [Helper dismissAlert];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    [self dismissAlert];
+    [Helper dismissAlert];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - ParserDelegate methods
+
+-(void) doOnDefine:(NSString *)definition
+{
+    self.html = definition;
+    [self performSegueWithIdentifier:@"DefineOption" sender:self]; 
+}
+-(void) doOnOptions:(NSArray *)theOptions optionsLinks:(NSArray *)theOptionsLinks
+{
+    
+}
+-(void) doOnNotFound
+{
+    
+}
+-(void) doOnError
+{
+    NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"Houbo un erro. Por favor, volve tentalo máis tarde.", nil)];
+    UIAlertView *info = [[UIAlertView alloc] 
+                         initWithTitle:nil message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles: nil];
+    [info show];
+}
+
+#pragma end
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -145,21 +170,6 @@ numberOfRowsInComponent:(NSInteger)component
         defineViewController.html = self.html;
         defineViewController.term = self.selected;
 	}
-}
-
--(void)showAlert {
-    self.loadingAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Buscando definición...", nil) 
-                                                   message:nil delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
-    [self.loadingAlert show];
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    
-    indicator.center = CGPointMake(self.loadingAlert.bounds.size.width / 2, self.loadingAlert.bounds.size.height - 50);
-    [indicator startAnimating];
-    [self.loadingAlert addSubview:indicator];
-}
-
--(void)dismissAlert {
-    [self.loadingAlert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 @end

@@ -7,14 +7,54 @@
 //
 
 #import "AppDelegate.h"
+#import "DefineViewController.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize defineViewController;
+@synthesize viewController;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+//    ViewController *viewController = [[[[self window] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"ViewController"];
+    
+    NSString *term = [[url absoluteString] substringFromIndex:8];
+    if (self.defineViewController == nil)
+    {
+        DefineViewController *theDefineViewController = [[[[self window] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"DefineViewController"];
+
+        self.defineViewController = theDefineViewController;
+    } 
+    if (self.viewController == nil)
+    {
+        ViewController *theViewController = [[[[self window] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"ViewController"];
+        
+        self.viewController = theViewController;
+    } 
+
+    self.defineViewController.termToDefine = term;
+    
+    UINavigationController *mainViewNavController = [[UINavigationController alloc] init];
+    
+    if (viewController != nil)
+    {
+        [mainViewNavController pushViewController:viewController animated:FALSE];
+    }
+    
+    if (self.defineViewController != nil)
+    {
+        [mainViewNavController pushViewController:self.defineViewController animated:FALSE];
+    }
+    [self.window setRootViewController:mainViewNavController];
     return YES;
 }
 							

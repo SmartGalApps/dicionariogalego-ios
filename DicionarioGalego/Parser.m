@@ -13,18 +13,22 @@
 @implementation Parser
 
 @synthesize word;
+@synthesize delegate;
 
 
--(NSString *)parse:(NSString *) text {
+-(void)parse:(NSString *) text {
     if ([text rangeOfString:@"Non se atopou o termo."].location != NSNotFound) {
-        return nil;
+        [self.delegate doOnNotFound];
+        return;
+//        return nil;
     }
     NSError *error = nil;
     HTMLParser *parser = [[HTMLParser alloc] initWithString:text error:&error];
 
     if (error) {
-        NSLog(@"Error: %@", error);
-        return @"<html><head><body>Error</body></html>";
+        [self.delegate doOnError];
+        return;
+//        return @"<html><head><body>Error</body></html>";
     }
     HTMLNode *bodyNode = [parser body];
     
@@ -47,7 +51,24 @@
             [result appendString:[options objectAtIndex:i]];
             [result appendString:@","];
         }
-        return result;
+        
+        NSMutableArray *optionsTemp = [[NSMutableArray alloc] initWithArray: [[result substringFromIndex:8] componentsSeparatedByString:@","]];
+        [optionsTemp removeLastObject];
+        
+        NSMutableArray *optionsLinks = [[NSMutableArray alloc] init];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [optionsTemp count]; i++)
+        {
+            NSString *optionTemp = [optionsTemp objectAtIndex:i];
+            NSArray *optionTempSplit = [optionTemp componentsSeparatedByString:@"|"];
+            [optionsLinks insertObject:[[optionTempSplit objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] atIndex:i];
+            [options insertObject:[[optionTempSplit objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] atIndex:i];
+        }
+        
+        
+        [self.delegate doOnOptions:options optionsLinks:optionsLinks];
+        return;
+//        return result;
     }
     // No hay opciones, está la definición
     if ([optionsLinks count] == 0) {
@@ -136,12 +157,14 @@
                                                range:NSMakeRange(0, [html length])];
                 }
                 NSLog(@"%@", html);
-                return html;
+                [self.delegate doOnDefine:html];
+                return;
+//                return html;
             }
         }
         
     }
-    return text;
+    return;
 }
 
 @end

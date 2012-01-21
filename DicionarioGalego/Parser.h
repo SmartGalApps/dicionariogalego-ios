@@ -8,12 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol ParserDelegate <NSObject>
+
+-(void) doOnDefine:(NSString *)definition;
+-(void) doOnOptions:(NSArray *)options optionsLinks:(NSArray *)optionsLinks;
+-(void) doOnNotFound;
+-(void) doOnError;
+
+@end
+
 @interface Parser : NSObject {
     NSString *word;
 }
 
 @property (nonatomic, retain) NSString* word;
+@property (nonatomic, retain) id<ParserDelegate> delegate;
 
--(NSString *)parse:(NSString *) text;
+-(void)parse:(NSString *) text;
 
 @end

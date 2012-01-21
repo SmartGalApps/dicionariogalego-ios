@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Parser.h"
 
-@interface OptionsViewController : UIViewController {
+@interface OptionsViewController : UIViewController <ParserDelegate>{
     NSArray *theOptions;
     NSArray *theOptionsLinks;
     NSString *selected;
     NSString *selectedLink;
     NSString *html;
-    UIAlertView *loadingAlert;
 }
 
 @property (nonatomic, retain) NSString *html;
@@ -22,7 +22,6 @@
 @property (nonatomic, retain) NSString *selectedLink;
 @property (nonatomic, retain) NSArray *theOptions;
 @property (nonatomic, retain) NSArray *theOptionsLinks;
-@property (nonatomic, retain) UIAlertView *loadingAlert;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *options;
 - (IBAction)search:(id)sender;

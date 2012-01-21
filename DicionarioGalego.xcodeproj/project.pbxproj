@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA10B7C314CADCC900DE04CC /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = BA10B7C214CADCC900DE04CC /* Helper.m */; };
 		BA1ABBCB14C1A16B00C55CAE /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1ABBC814C1A16B00C55CAE /* HTMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BA1ABBCC14C1A16C00C55CAE /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1ABBCA14C1A16B00C55CAE /* HTMLParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BA1ABBCE14C1A1B500C55CAE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1ABBCD14C1A1B500C55CAE /* libxml2.dylib */; };
@@ -50,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA10B7C114CADCC900DE04CC /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		BA10B7C214CADCC900DE04CC /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		BA1ABBC714C1A16B00C55CAE /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
 		BA1ABBC814C1A16B00C55CAE /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
 		BA1ABBC914C1A16B00C55CAE /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				BAF24C7C14B7067000B4F0A3 /* Parser.m */,
 				BA1ABBDC14C2F96F00C55CAE /* OptionsViewController.h */,
 				BA1ABBDD14C2F96F00C55CAE /* OptionsViewController.m */,
+				BA10B7C114CADCC900DE04CC /* Helper.h */,
+				BA10B7C214CADCC900DE04CC /* Helper.m */,
 			);
 			path = DicionarioGalego;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				BA1ABBCB14C1A16B00C55CAE /* HTMLNode.m in Sources */,
 				BA1ABBCC14C1A16C00C55CAE /* HTMLParser.m in Sources */,
 				BA1ABBDE14C2F96F00C55CAE /* OptionsViewController.m in Sources */,
+				BA10B7C314CADCC900DE04CC /* Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Parser.h"
 
-@interface ViewController : UIViewController <UITextFieldDelegate> {
+@interface ViewController : UIViewController <UITextFieldDelegate, ParserDelegate> {
     NSString *html;
     NSMutableData* responseData;
     UIAlertView *loadingAlert;
+    NSArray *options;
+    NSArray *optionsLinks;
 }
 
+@property (nonatomic, retain) NSArray* options;
+@property (nonatomic, retain) NSArray* optionsLinks;
 @property (nonatomic, retain) NSString* html;
 @property (nonatomic, retain) NSMutableData* responseData;
 @property (weak, nonatomic) IBOutlet UITextField *termTextField;

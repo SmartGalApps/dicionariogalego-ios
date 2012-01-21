@@ -7,14 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Parser.h"
 
-@interface DefineViewController : UIViewController {
+@interface DefineViewController : UIViewController <ParserDelegate> {
     NSString *term;
     NSString *html;
+    NSString *termToDefine;
+    NSArray *options;
+    NSArray *optionsLinks;
 }
 
+@property (nonatomic, retain) NSArray* options;
+@property (nonatomic, retain) NSArray* optionsLinks;
+@property (nonatomic, retain) NSString* termToDefine;
 @property (nonatomic, retain) NSString* term;
 @property (nonatomic, retain) NSString* html;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+- (IBAction)grabURLInBackground:(id)sender;
 
 @end
