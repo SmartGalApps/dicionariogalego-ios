@@ -9,10 +9,13 @@
 #import "DefineViewController.h"
 #import "Helper.h"
 #import "Parser.h"
-#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 
 @implementation DefineViewController
 @synthesize webView;
+@synthesize translateButton;
+@synthesize conjugateButton;
+@synthesize bottomToolbar;
 @synthesize html;
 @synthesize term;
 @synthesize termToDefine;
@@ -51,9 +54,11 @@
     if (self.termToDefine != nil)
     {
         [self grabURLInBackground:self];
+        [self.bottomToolbar setHidden:TRUE];
     }
     else
     {
+        [self.bottomToolbar setHidden:FALSE];
         NSString *path = [[NSBundle mainBundle] bundlePath];
         NSURL *baseURL = [NSURL fileURLWithPath:path];
         self.webView.opaque = NO;
@@ -66,6 +71,9 @@
 - (void)viewDidUnload
 {
     [self setWebView:nil];
+    [self setTranslateButton:nil];
+    [self setConjugateButton:nil];
+    [self setBottomToolbar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -80,12 +88,27 @@
 - (IBAction)grabURLInBackground:(id)sender
 {
     [Helper showAlert];
-    NSURL *url = [Helper getUrl:self.termToDefine];
+    NSMutableString *urlString = [NSMutableString string];
+    [urlString appendString:@"http://www.edu.xunta.es/diccionarios/BuscaTermo.jsp"];
+    NSURL *url = [NSURL URLWithString:urlString];
     
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:self.termToDefine forKey:@"Termo"];
     [request setDelegate:self];
     [request startAsynchronous];
     
+}
+
+- (IBAction)translate:(id)sender {
+    NSString *urlString = [[NSString alloc] initWithFormat:@"traduce://%@", self.term];
+    NSURL *myURL = [NSURL URLWithString:urlString];
+    [[UIApplication sharedApplication] openURL:myURL];
+}
+
+- (IBAction)conjugate:(id)sender {
+    NSString *urlString = [[NSString alloc] initWithFormat:@"conxuga://%@", self.term];
+    NSURL *myURL = [NSURL URLWithString:urlString];
+    [[UIApplication sharedApplication] openURL:myURL];
 }
 
 - (IBAction)exit:(id)sender {
@@ -120,7 +143,9 @@
     self.webView.opaque = NO;
     self.webView.backgroundColor = [UIColor clearColor];
     NSLog(@"%@", self.html);
-    [self.webView loadHTMLString:self.html baseURL:baseURL]; 
+    [self.webView loadHTMLString:self.html baseURL:baseURL];
+//    [self.bottomToolbar setHidden:FALSE];
+//    [self.bottomToolbar setItems:[[NSArray alloc] initWithObjects:self.translateButton,self.conjugateButton,nil] animated:TRUE];
 }
 -(void) doOnOptions:(NSArray *)theOptions optionsLinks:(NSArray *)theOptionsLinks
 {

@@ -140,12 +140,31 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="hma-5Q-dIr">
+                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Conxugar" id="3cU-R5-BXg">
+                                        <connections>
+                                            <action selector="conjugate:" destination="lcJ-HR-qRv" id="HBu-tH-jpz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Traducir" id="FQk-xx-oCX">
+                                        <connections>
+                                            <action selector="translate:" destination="lcJ-HR-qRv" id="XKm-2S-YYd"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Definición" id="tib-2h-ziP"/>
                     <connections>
+                        <outlet property="bottomToolbar" destination="hma-5Q-dIr" id="cjo-oG-X4q"/>
+                        <outlet property="conjugateButton" destination="3cU-R5-BXg" id="1Fh-WC-ivE"/>
+                        <outlet property="translateButton" destination="FQk-xx-oCX" id="M2E-W8-OK2"/>
                         <outlet property="webView" destination="8hU-i0-OHO" id="APy-Ez-zbu"/>
                     </connections>
                 </viewController>
@@ -222,34 +241,6 @@
         <image name="fondo.png" width="480" height="640"/>
         <image name="portada.png" width="220" height="220"/>
     </resources>
-    <classes>
-        <class className="DefineViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DefineViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="exit:"/>
-                <relationship kind="action" name="grabURLInBackground:"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="OptionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="grabURLInBackground:"/>
-                <relationship kind="action" name="search:"/>
-                <relationship kind="outlet" name="options" candidateClass="UIPickerView"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="grabURLInBackground:"/>
-                <relationship kind="action" name="searchButton:"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="termTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

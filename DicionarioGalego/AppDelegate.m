@@ -25,7 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    NSString *term = [[url absoluteString] substringFromIndex:8];
+    NSString *term = [[url absoluteString] substringFromIndex:9];
     if (self.defineViewController == nil)
     {
         DefineViewController *theDefineViewController = [[[[self window] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"DefineViewController"];

@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "DefineViewController.h"
 #import "OptionsViewController.h"
-#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 #import "Parser.h"
 #import "Helper.h"
 
@@ -124,9 +124,12 @@
 
 - (IBAction)grabURLInBackground:(id)sender
 {
-    NSURL *url = [Helper getUrl:self.termTextField.text];
+    NSMutableString *urlString = [NSMutableString string];
+    [urlString appendString:@"http://www.edu.xunta.es/diccionarios/BuscaTermo.jsp"];
+    NSURL *url = [NSURL URLWithString:urlString];
     
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:self.termTextField.text forKey:@"Termo"];
     [request setDelegate:self];
     [request startAsynchronous];
 }
