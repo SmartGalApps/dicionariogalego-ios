@@ -23,30 +23,44 @@
     return YES;
 }
 
+/*
+ * Para integración
+ */
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    // O termo a buscar
     NSString *term = [[url absoluteString] substringFromIndex:9];
+    
+    // Primeira vez que se arranca a integración
     if (self.defineViewController == nil)
     {
+        // Creo o ViewController do storyboard
         DefineViewController *theDefineViewController = [[[[self window] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"DefineViewController"];
 
+        // Gárdoo para futuros usos e asigno o termo a buscar
         self.defineViewController = theDefineViewController;
-        self.defineViewController.termToDefine = term;
+        self.defineViewController.termFromIntegration = term;
     }
     else
     {
-        self.defineViewController.termToDefine = term;
+        // Asigno o termo a buscar e busco (non se vai chamar a viewDidLoad, que é onde se conecta ao servidor a primeira vez)
+        self.defineViewController.termFromIntegration = term;
         [self.defineViewController grabURLInBackground:self];
     }
+
+    // Creo a pantalla principal para metela no UINavigationController
     if (self.viewController == nil)
     {
         ViewController *theViewController = [[[[self window] rootViewController] storyboard] instantiateViewControllerWithIdentifier:@"ViewController"];
         
+        // Gárdoo para futuros usos
         self.viewController = theViewController;
     } 
 
+    // Creo o UINavigationController
     UINavigationController *mainViewNavController = [[UINavigationController alloc] init];
     
+    // Engado os ViewControllers ao navigator
     if (viewController != nil)
     {
         [mainViewNavController pushViewController:viewController animated:FALSE];
@@ -57,6 +71,7 @@
         [mainViewNavController pushViewController:self.defineViewController animated:FALSE];
     }
 
+    // Amosar
     [self.window setRootViewController:mainViewNavController];
     return YES;
 }

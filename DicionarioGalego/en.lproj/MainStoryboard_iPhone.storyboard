@@ -166,6 +166,7 @@
                         <outlet property="conjugateButton" destination="3cU-R5-BXg" id="1Fh-WC-ivE"/>
                         <outlet property="translateButton" destination="FQk-xx-oCX" id="M2E-W8-OK2"/>
                         <outlet property="webView" destination="8hU-i0-OHO" id="APy-Ez-zbu"/>
+                        <segue destination="EPG-pH-lge" kind="push" identifier="ShowOptions" id="n5N-8r-dka"/>
                     </connections>
                 </viewController>
             </objects>
@@ -241,39 +242,6 @@
         <image name="fondo.png" width="480" height="640"/>
         <image name="portada.png" width="220" height="220"/>
     </resources>
-    <classes>
-        <class className="DefineViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DefineViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="conjugate:"/>
-                <relationship kind="action" name="exit:"/>
-                <relationship kind="action" name="grabURLInBackground:"/>
-                <relationship kind="action" name="translate:"/>
-                <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="conjugateButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="translateButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="OptionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="grabURLInBackground:"/>
-                <relationship kind="action" name="search:"/>
-                <relationship kind="outlet" name="options" candidateClass="UIPickerView"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="grabURLInBackground:"/>
-                <relationship kind="action" name="searchButton:"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="termTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -281,5 +249,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="I38-IN-k4m"/>
+        <segue reference="n5N-8r-dka"/>
     </inferredMetricsTieBreakers>
 </document>

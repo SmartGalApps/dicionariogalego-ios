@@ -39,12 +39,9 @@
 		BAF24C6014B703AE00B4F0A3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C5F14B703AE00B4F0A3 /* MobileCoreServices.framework */; };
 		BAF24C6214B703B600B4F0A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C6114B703B600B4F0A3 /* SystemConfiguration.framework */; };
 		BAF24C6814B7047C00B4F0A3 /* fondo.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C6414B7047C00B4F0A3 /* fondo.png */; };
-		BAF24C6914B7047C00B4F0A3 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C6514B7047C00B4F0A3 /* logo.png */; };
-		BAF24C6A14B7047C00B4F0A3 /* logo_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C6614B7047C00B4F0A3 /* logo_retina.png */; };
 		BAF24C6B14B7047C00B4F0A3 /* portada.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C6714B7047C00B4F0A3 /* portada.png */; };
 		BAF24C6D14B7048A00B4F0A3 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C6C14B7048A00B4F0A3 /* logo.png */; };
 		BAF24C6F14B7048E00B4F0A3 /* logo_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C6E14B7048E00B4F0A3 /* logo_retina.png */; };
-		BAF24C7114B704C600B4F0A3 /* logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C7014B704C600B4F0A3 /* logo_ipad.png */; };
 		BAF24C7314B704CA00B4F0A3 /* logo_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BAF24C7214B704CA00B4F0A3 /* logo_ipad.png */; };
 		BAF24C7A14B7063B00B4F0A3 /* DefineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF24C7914B7063B00B4F0A3 /* DefineViewController.m */; };
 		BAF24C7D14B7067000B4F0A3 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = BAF24C7C14B7067000B4F0A3 /* Parser.m */; };
@@ -105,12 +102,9 @@
 		BAF24C5F14B703AE00B4F0A3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		BAF24C6114B703B600B4F0A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BAF24C6414B7047C00B4F0A3 /* fondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fondo.png; sourceTree = "<group>"; };
-		BAF24C6514B7047C00B4F0A3 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		BAF24C6614B7047C00B4F0A3 /* logo_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_retina.png; sourceTree = "<group>"; };
 		BAF24C6714B7047C00B4F0A3 /* portada.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = portada.png; sourceTree = "<group>"; };
 		BAF24C6C14B7048A00B4F0A3 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		BAF24C6E14B7048E00B4F0A3 /* logo_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_retina.png; sourceTree = "<group>"; };
-		BAF24C7014B704C600B4F0A3 /* logo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ipad.png; sourceTree = "<group>"; };
 		BAF24C7214B704CA00B4F0A3 /* logo_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ipad.png; sourceTree = "<group>"; };
 		BAF24C7814B7063B00B4F0A3 /* DefineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefineViewController.h; sourceTree = "<group>"; };
 		BAF24C7914B7063B00B4F0A3 /* DefineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefineViewController.m; sourceTree = "<group>"; };
@@ -271,10 +265,7 @@
 		BAF24C6314B7047C00B4F0A3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				BAF24C7014B704C600B4F0A3 /* logo_ipad.png */,
 				BAF24C6414B7047C00B4F0A3 /* fondo.png */,
-				BAF24C6514B7047C00B4F0A3 /* logo.png */,
-				BAF24C6614B7047C00B4F0A3 /* logo_retina.png */,
 				BAF24C6714B7047C00B4F0A3 /* portada.png */,
 			);
 			path = Images;
@@ -335,12 +326,9 @@
 				BAF24C2E14B702ED00B4F0A3 /* MainStoryboard_iPhone.storyboard in Resources */,
 				BAF24C3114B702ED00B4F0A3 /* MainStoryboard_iPad.storyboard in Resources */,
 				BAF24C6814B7047C00B4F0A3 /* fondo.png in Resources */,
-				BAF24C6914B7047C00B4F0A3 /* logo.png in Resources */,
-				BAF24C6A14B7047C00B4F0A3 /* logo_retina.png in Resources */,
 				BAF24C6B14B7047C00B4F0A3 /* portada.png in Resources */,
 				BAF24C6D14B7048A00B4F0A3 /* logo.png in Resources */,
 				BAF24C6F14B7048E00B4F0A3 /* logo_retina.png in Resources */,
-				BAF24C7114B704C600B4F0A3 /* logo_ipad.png in Resources */,
 				BAF24C7314B704CA00B4F0A3 /* logo_ipad.png in Resources */,
 				BA1ABBD514C1B1DF00C55CAE /* CantarellBold.ttf in Resources */,
 				BA1ABBD614C1B1DF00C55CAE /* CantarellBoldOblique.ttf in Resources */,

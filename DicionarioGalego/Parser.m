@@ -20,7 +20,6 @@
     if ([text rangeOfString:@"Non se atopou o termo."].location != NSNotFound) {
         [self.delegate doOnNotFound];
         return;
-//        return nil;
     }
     NSError *error = nil;
     HTMLParser *parser = [[HTMLParser alloc] initWithString:text error:&error];
@@ -28,7 +27,6 @@
     if (error) {
         [self.delegate doOnError];
         return;
-//        return @"<html><head><body>Error</body></html>";
     }
     HTMLNode *bodyNode = [parser body];
     
@@ -68,7 +66,6 @@
         
         [self.delegate doOnOptions:options optionsLinks:optionsLinks];
         return;
-//        return result;
     }
     // No hay opciones, está la definición
     if ([optionsLinks count] == 0) {
@@ -158,7 +155,6 @@
                 }
                 [self.delegate doOnDefine:html];
                 return;
-//                return html;
             }
         }
         

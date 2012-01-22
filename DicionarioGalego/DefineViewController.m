@@ -7,6 +7,7 @@
 //
 
 #import "DefineViewController.h"
+#import "OptionsViewController.h"
 #import "Helper.h"
 #import "Parser.h"
 #import "ASIFormDataRequest.h"
@@ -16,21 +17,12 @@
 @synthesize translateButton;
 @synthesize conjugateButton;
 @synthesize bottomToolbar;
-@synthesize html;
-@synthesize term;
-@synthesize termToDefine;
+@synthesize htmlDefinition;
+@synthesize termFromMainViewController;
+@synthesize termFromIntegration;
 @synthesize options;
 @synthesize optionsLinks;
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -39,34 +31,36 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - View lifecycle
-
 /*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
+ * Recarga el HTML. Se limpia el fondo para ponerlo con CSS
+ */
+-(void)reloadHtml
 {
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseURL = [NSURL fileURLWithPath:path];
+    self.webView.opaque = NO;
+    self.webView.backgroundColor = [UIColor clearColor];
+    [self.webView loadHTMLString:self.htmlDefinition baseURL:baseURL];
 }
-*/
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.termToDefine != nil)
+    
+    // Viene de integración, hay que buscar el término y ocultar la barra
+    if (self.termFromIntegration != nil)
     {
         [self grabURLInBackground:self];
         [self.bottomToolbar setHidden:TRUE];
     }
     else
     {
+        // Mostrar la barra y cargar el html.
         [self.bottomToolbar setHidden:FALSE];
-        NSString *path = [[NSBundle mainBundle] bundlePath];
-        NSURL *baseURL = [NSURL fileURLWithPath:path];
-        self.webView.opaque = NO;
-        self.webView.backgroundColor = [UIColor clearColor];
-        [self.webView loadHTMLString:self.html baseURL:baseURL];
+        [self reloadHtml];
     }
 }
-
 
 - (void)viewDidUnload
 {
@@ -74,9 +68,12 @@
     [self setTranslateButton:nil];
     [self setConjugateButton:nil];
     [self setBottomToolbar:nil];
+    [self setHtmlDefinition:nil];
+    [self setTermFromMainViewController:nil];
+    [self setTermFromIntegration:nil];
+    [self setOptions:nil];
+    [self setOptionsLinks:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -85,6 +82,9 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+/*
+ * Realiza la petición al servidor (viene de la integración)
+ */
 - (IBAction)grabURLInBackground:(id)sender
 {
     [Helper showAlert];
@@ -93,26 +93,28 @@
     NSURL *url = [NSURL URLWithString:urlString];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:self.termToDefine forKey:@"Termo"];
+    [request setPostValue:self.termFromIntegration forKey:@"Termo"];
     [request setDelegate:self];
     [request startAsynchronous];
     
 }
 
+/*
+ * Botón de integración
+ */
 - (IBAction)translate:(id)sender {
-    NSString *urlString = [[NSString alloc] initWithFormat:@"traduce://%@", self.term];
+    NSString *urlString = [[NSString alloc] initWithFormat:@"traduce://%@", self.termFromMainViewController];
     NSURL *myURL = [NSURL URLWithString:urlString];
     [[UIApplication sharedApplication] openURL:myURL];
 }
 
+/*
+ * Botón de integración
+ */
 - (IBAction)conjugate:(id)sender {
-    NSString *urlString = [[NSString alloc] initWithFormat:@"conxuga://%@", self.term];
+    NSString *urlString = [[NSString alloc] initWithFormat:@"conxuga://%@", self.termFromMainViewController];
     NSURL *myURL = [NSURL URLWithString:urlString];
     [[UIApplication sharedApplication] openURL:myURL];
-}
-
-- (IBAction)exit:(id)sender {
-    [[self navigationController] popViewControllerAnimated:TRUE];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -122,7 +124,7 @@
     
     Parser *parser = [[Parser alloc] init];
     parser.delegate = self;
-    parser.word = self.termToDefine;
+    parser.word = self.termFromIntegration;
     [parser parse:responseString];
     [Helper dismissAlert];
 }
@@ -134,40 +136,63 @@
 
 #pragma mark - ParserDelegate methods
 
+/*
+ * Encontró definición (viene de integración)
+ */
 -(void) doOnDefine:(NSString *)definition
 {
-    self.html = definition;
-    self.term = self.termToDefine;
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSURL *baseURL = [NSURL fileURLWithPath:path];
-    self.webView.opaque = NO;
-    self.webView.backgroundColor = [UIColor clearColor];
-    NSLog(@"%@", self.html);
-    [self.webView loadHTMLString:self.html baseURL:baseURL];
-//    [self.bottomToolbar setHidden:FALSE];
-//    [self.bottomToolbar setItems:[[NSArray alloc] initWithObjects:self.translateButton,self.conjugateButton,nil] animated:TRUE];
+    self.htmlDefinition = definition;
+    [self reloadHtml];
 }
+
+/*
+ * Encontró opciones (viene de integración)
+ */
 -(void) doOnOptions:(NSArray *)theOptions optionsLinks:(NSArray *)theOptionsLinks
 {
     self.options = theOptions;
     self.optionsLinks = theOptionsLinks;
     [self performSegueWithIdentifier:@"ShowOptions" sender:self];
 }
+
+/*
+ * No encuentra el término
+ */
 -(void) doOnNotFound
 {
-    NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"O termo \'%@\' non se atopa no dicionario", nil), self.termToDefine];
+    NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"O termo \'%@\' non se atopa no dicionario", nil), self.termFromIntegration];
     UIAlertView *info = [[UIAlertView alloc] 
                          initWithTitle:nil message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles: nil];
     [info show];
+    [[self navigationController] popViewControllerAnimated:TRUE];
 }
+
+/*
+ * Hubo algun error
+ */
 -(void) doOnError
 {
     NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"Houbo un erro. Por favor, volve tentalo máis tarde.", nil)];
     UIAlertView *info = [[UIAlertView alloc] 
                          initWithTitle:nil message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles: nil];
     [info show];
+    [[self navigationController] popViewControllerAnimated:TRUE];
 }
 
 #pragma end
+
+/*
+ * Para ir a la pantalla de definiciones, o de las opciones
+ */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"ShowOptions"])
+    {
+        OptionsViewController *optionsViewController = 
+        segue.destinationViewController;
+        optionsViewController.theOptionsLinks = self.optionsLinks;
+        optionsViewController.theOptions = self.options;
+    }
+}
 
 @end

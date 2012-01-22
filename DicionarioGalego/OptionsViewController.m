@@ -13,6 +13,7 @@
 #import "Helper.h"
 
 @implementation OptionsViewController
+
 @synthesize options;
 @synthesize theOptions;
 @synthesize theOptionsLinks;
@@ -39,30 +40,25 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-
-*/
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.selected = [self.theOptions objectAtIndex:0];
     self.selectedLink = [self.theOptionsLinks objectAtIndex:0];
-    NSLog(@"--- %d", [self.theOptions count]);
+    [Helper dismissAlert];
 }
 
 
 - (void)viewDidUnload
 {
     [self setOptions:nil];
+    [self setTheOptions:nil];
+    [self setTheOptionsLinks:nil];
+    [self setSelected:nil];
+    [self setSelectedLink:nil];
+    [self setHtml:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -71,11 +67,54 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+/*
+ * Realiza la petición al servidor cuando el usuario escoge una opción
+ */
+- (IBAction)grabURLInBackground:(id)sender
+{
+    NSMutableString *urlString = [NSMutableString string];
+    [urlString appendString:@"http://www.edu.xunta.es/diccionarios/"];
+    [urlString appendString:self.selectedLink];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request startAsynchronous];
+}
+
+/*
+ * La petición tuvo éxito (es enlace directo, no tiene que encontrar el término)
+ */
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Use when fetching text data
+    NSString *responseString = [request responseString];
+    
+    Parser *parser = [[Parser alloc] init];
+    parser.delegate = self;
+    parser.word = self.selected;
+    [parser parse:responseString];
+    [Helper dismissAlert];
+}
+
+/*
+ * Hubo algún error en la petición
+ */
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    [Helper dismissAlert];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/*
+ * Lanza la petición al servidor
+ */
 - (IBAction)search:(id)sender {
     [self grabURLInBackground:self];
     [Helper showAlert];
 }
 
+#pragma mark - UIPickerView delegate and datasource
 
 - (NSInteger)numberOfComponentsInPickerView:
 (UIPickerView *)pickerView
@@ -103,54 +142,39 @@ numberOfRowsInComponent:(NSInteger)component
     self.selectedLink = [self.theOptionsLinks objectAtIndex:row];
 }
 
+#pragma mark end
 
-
-- (IBAction)grabURLInBackground:(id)sender
-{
-    NSMutableString *urlString = [NSMutableString string];
-    [urlString appendString:@"http://www.edu.xunta.es/diccionarios/"];
-    NSLog(@"-------%@", self.selected);
-    [urlString appendString:self.selectedLink];
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    [request setDelegate:self];
-    [request startAsynchronous];
-}
-
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-    // Use when fetching text data
-    NSString *responseString = [request responseString];
-    
-    Parser *parser = [[Parser alloc] init];
-    parser.delegate = self;
-    parser.word = self.selected;
-    [parser parse:responseString];
-    [Helper dismissAlert];
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request
-{
-    [Helper dismissAlert];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 #pragma mark - ParserDelegate methods
 
+/*
+ * El parser encontró la definición
+ */
 -(void) doOnDefine:(NSString *)definition
 {
     self.html = definition;
     [self performSegueWithIdentifier:@"DefineOption" sender:self]; 
 }
+
+/*
+ * No se puede dar
+ */
 -(void) doOnOptions:(NSArray *)theOptions optionsLinks:(NSArray *)theOptionsLinks
 {
     
 }
+
+/*
+ * No se puede dar
+ */
 -(void) doOnNotFound
 {
     
 }
+
+/*
+ * Hubo algún error. Muestra alert
+ */
 -(void) doOnError
 {
     NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"Houbo un erro. Por favor, volve tentalo máis tarde.", nil)];
@@ -161,14 +185,17 @@ numberOfRowsInComponent:(NSInteger)component
 
 #pragma end
 
+/*
+ * Lanza la pantalla de definición
+ */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"DefineOption"])
 	{
 		DefineViewController *defineViewController = 
         segue.destinationViewController;
-        defineViewController.html = self.html;
-        defineViewController.term = self.selected;
+        defineViewController.htmlDefinition = self.html;
+        defineViewController.termFromIntegration = self.selected;
 	}
 }
 

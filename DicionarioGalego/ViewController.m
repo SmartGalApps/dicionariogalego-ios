@@ -14,10 +14,8 @@
 #import "Helper.h"
 
 @implementation ViewController
-@synthesize html;
-@synthesize responseData;
+@synthesize definitionInHtml;
 @synthesize termTextField;
-@synthesize loadingAlert;
 @synthesize searchButton;
 @synthesize scrollView;
 @synthesize optionsLinks;
@@ -27,6 +25,18 @@
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
 }
 
 #pragma mark - View lifecycle
@@ -39,10 +49,12 @@
 
 - (void)viewDidUnload
 {
-    [self setHtml:nil];
+    [self setDefinitionInHtml:nil];
     [self setTermTextField:nil];
     [self setSearchButton:nil];
     [self setScrollView:nil];
+    [self setOptionsLinks:nil];
+    [self setOptions:nil];
     [super viewDidUnload];
 }
 
@@ -72,13 +84,9 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
-    if (theTextField == self.termTextField) {
-        [theTextField resignFirstResponder];
-    }
-    [self search];
-    return YES;
-}
+/*
+ * Realiza la búsqueda. Si el campo está vacío no hace nada. Si tiene espacios en blanco muestra un alertView
+ */
 -(void)search {
     if ([self.termTextField.text rangeOfString:@" "].location != NSNotFound) {
         UIAlertView *info = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"O termo non pode ter espazos en blanco", nil) 
@@ -92,6 +100,10 @@
     }
 }
 
+/*
+ * Si la longitud de lo introducido es 0, desactiva el botón.
+ * También es aquí donde se comprueba la longitud máxima para permitir seguir escribiendo o no
+ */
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     
@@ -100,14 +112,17 @@
     return (newLength > 16) ? NO : YES;
 }
 
+/*
+ * Para ir a la pantalla de definiciones, o de las opciones
+ */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"Define"])
 	{
 		DefineViewController *defineViewController = 
         segue.destinationViewController;
-        defineViewController.html = self.html;
-        defineViewController.term = self.termTextField.text;
+        defineViewController.htmlDefinition = self.definitionInHtml;
+        defineViewController.termFromMainViewController = self.termTextField.text;
 	}
     else if ([segue.identifier isEqualToString:@"ShowOptions"])
     {
@@ -118,10 +133,16 @@
     }
 }
 
+/*
+ * Acción del botón de buscar
+ */
 - (IBAction)searchButton:(id)sender {
     [self search];
 }
 
+/*
+ * Realiza la petición al servidor
+ */
 - (IBAction)grabURLInBackground:(id)sender
 {
     NSMutableString *urlString = [NSMutableString string];
@@ -134,6 +155,9 @@
     [request startAsynchronous];
 }
 
+/*
+ * Método delegate cuando hubo éxito (en la petición, falta parsear)
+ */
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     // Use when fetching text data
@@ -146,6 +170,9 @@
     [Helper dismissAlert];
 }
 
+/*
+ * Si la conexión falla, sale
+ */
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -153,17 +180,28 @@
 
 #pragma mark - ParserDelegate methods
 
+/*
+ * Se obtuvo una definición con éxito
+ */
 -(void) doOnDefine:(NSString *)definition
 {
-    self.html = definition;
+    self.definitionInHtml = definition;
     [self performSegueWithIdentifier:@"Define" sender:self]; 
 }
+
+/*
+ * Se obtuvieron opciones
+ */
 -(void) doOnOptions:(NSArray *)theOptions optionsLinks:(NSArray *)theOptionsLinks
 {
     self.options = theOptions;
     self.optionsLinks = theOptionsLinks;
     [self performSegueWithIdentifier:@"ShowOptions" sender:self];
 }
+
+/*
+ * No se encuentra en el diccionario. Muestra alert
+ */
 -(void) doOnNotFound
 {
     NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"O termo \'%@\' non se atopa no dicionario", nil), self.termTextField.text];
@@ -171,6 +209,10 @@
                          initWithTitle:nil message:message delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles: nil];
     [info show];
 }
+
+/*
+ * Hubo algún error parseando. Muestra alert
+ */
 -(void) doOnError
 {
     NSMutableString *message = [[NSMutableString alloc] initWithFormat:NSLocalizedString(@"Houbo un erro. Por favor, volve tentalo máis tarde.", nil)];
@@ -181,19 +223,9 @@
 
 #pragma end
 
-
-- (void)registerForKeyboardNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-    
-}
-
+/*
+ * Estos métodos son para manejar el teclado virtual: ocultarlo tras buscar, hacer scroll cuando sale, etc.
+ */
 // Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
@@ -222,4 +254,14 @@
     scrollView.scrollIndicatorInsets = contentInsets;
 }
 
+/*
+ * Para activar el ENTER del teclado virtual como botón de búsqueda
+ */
+- (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+    if (theTextField == self.termTextField) {
+        [theTextField resignFirstResponder];
+    }
+    [self search];
+    return YES;
+}
 @end
