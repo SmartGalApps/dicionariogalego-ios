@@ -36,4 +36,28 @@ static UIAlertView * loadingAlert;
 {
     [loadingAlert dismissWithClickedButtonIndex:0 animated:YES];
 }
+
+
+/*
+ * Comprueba si el verbo existe en el Volga
+ */
++(BOOL)existsVerb:(NSString* ) verb
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"verbosVolga" 
+                                                     ofType:@"txt"];
+    NSString* verbosVolga = [NSString stringWithContentsOfFile:path
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:NULL];
+    NSArray* lines = 
+    [verbosVolga componentsSeparatedByCharactersInSet:
+     [NSCharacterSet newlineCharacterSet]];
+    for (NSString* line in lines)
+    {
+        if ([line isEqualToString:verb])
+        {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
 @end

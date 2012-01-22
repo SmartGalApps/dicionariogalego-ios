@@ -21,6 +21,7 @@
 
 - (IBAction)grabURLInBackground:(id)sender;
 - (IBAction)searchButton:(id)sender;
+
 -(void)search;
 
 @end

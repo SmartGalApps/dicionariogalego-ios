@@ -58,6 +58,14 @@
     {
         // Mostrar la barra y cargar el html.
         [self.bottomToolbar setHidden:FALSE];
+        if ([Helper existsVerb:self.termFromMainViewController])
+        {
+            [self.bottomToolbar setItems:[[NSArray alloc] initWithObjects:self.translateButton,self.conjugateButton,nil] animated:TRUE];
+        }
+        else
+        {
+            [self.bottomToolbar setItems:[[NSArray alloc] initWithObjects:self.translateButton,nil] animated:TRUE];
+        }
         [self reloadHtml];
     }
 }
@@ -105,7 +113,16 @@
 - (IBAction)translate:(id)sender {
     NSString *urlString = [[NSString alloc] initWithFormat:@"traduce://%@", self.termFromMainViewController];
     NSURL *myURL = [NSURL URLWithString:urlString];
-    [[UIApplication sharedApplication] openURL:myURL];
+    if ([[UIApplication sharedApplication] canOpenURL:myURL])
+    {
+        [[UIApplication sharedApplication] openURL:myURL];
+    }
+    else
+    {
+        NSString *appURLString = [[NSString alloc] initWithFormat:@"http://itunes.com/apps/tradutorgalego"];
+        NSURL *appURL = [NSURL URLWithString:appURLString];
+        [[UIApplication sharedApplication] openURL:appURL];
+    }
 }
 
 /*
@@ -114,7 +131,16 @@
 - (IBAction)conjugate:(id)sender {
     NSString *urlString = [[NSString alloc] initWithFormat:@"conxuga://%@", self.termFromMainViewController];
     NSURL *myURL = [NSURL URLWithString:urlString];
-    [[UIApplication sharedApplication] openURL:myURL];
+    if ([[UIApplication sharedApplication] canOpenURL:myURL])
+    {
+        [[UIApplication sharedApplication] openURL:myURL];
+    }
+    else
+    {
+        NSString *appURLString = [[NSString alloc] initWithFormat:@"http://itunes.com/apps/conxugalego"];
+        NSURL *appURL = [NSURL URLWithString:appURLString];
+        [[UIApplication sharedApplication] openURL:appURL];
+    }
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
