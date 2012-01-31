@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString *selectedLink;
 @property (nonatomic, retain) NSArray *theOptions;
 @property (nonatomic, retain) NSArray *theOptionsLinks;
+@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *options;
 

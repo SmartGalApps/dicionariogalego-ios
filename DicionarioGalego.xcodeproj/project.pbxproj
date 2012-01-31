@@ -16,6 +16,8 @@
 		BA1ABBD714C1B1DF00C55CAE /* CantarellRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA1ABBD314C1B1DF00C55CAE /* CantarellRegular.ttf */; };
 		BA1ABBD814C1B1DF00C55CAE /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = BA1ABBD414C1B1DF00C55CAE /* styles.css */; };
 		BA1ABBDE14C2F96F00C55CAE /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1ABBDD14C2F96F00C55CAE /* OptionsViewController.m */; };
+		BA90691714D873060028C452 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA90691614D873060028C452 /* AboutViewController.m */; };
+		BA90691A14D8789F0028C452 /* styles_landscape.css in Resources */ = {isa = PBXBuildFile; fileRef = BA90691914D8789F0028C452 /* styles_landscape.css */; };
 		BABE403F14CC6389006F15C2 /* verbosVolga.txt in Resources */ = {isa = PBXBuildFile; fileRef = BABE403E14CC6388006F15C2 /* verbosVolga.txt */; };
 		BAF24C1B14B702ED00B4F0A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C1A14B702ED00B4F0A3 /* UIKit.framework */; };
 		BAF24C1D14B702ED00B4F0A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C1C14B702ED00B4F0A3 /* Foundation.framework */; };
@@ -62,6 +64,9 @@
 		BA1ABBD414C1B1DF00C55CAE /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		BA1ABBDC14C2F96F00C55CAE /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
 		BA1ABBDD14C2F96F00C55CAE /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
+		BA90691514D873060028C452 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		BA90691614D873060028C452 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		BA90691914D8789F0028C452 /* styles_landscape.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles_landscape.css; sourceTree = "<group>"; };
 		BABE403E14CC6388006F15C2 /* verbosVolga.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = verbosVolga.txt; sourceTree = "<group>"; };
 		BAF24C1614B702ED00B4F0A3 /* DicionarioGalego.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DicionarioGalego.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF24C1A14B702ED00B4F0A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -149,6 +154,7 @@
 			children = (
 				BA1ABBD014C1B1DF00C55CAE /* fonts */,
 				BA1ABBD414C1B1DF00C55CAE /* styles.css */,
+				BA90691914D8789F0028C452 /* styles_landscape.css */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -229,6 +235,8 @@
 				BA1ABBDD14C2F96F00C55CAE /* OptionsViewController.m */,
 				BA10B7C114CADCC900DE04CC /* Helper.h */,
 				BA10B7C214CADCC900DE04CC /* Helper.m */,
+				BA90691514D873060028C452 /* AboutViewController.h */,
+				BA90691614D873060028C452 /* AboutViewController.m */,
 			);
 			path = DicionarioGalego;
 			sourceTree = "<group>";
@@ -346,6 +354,7 @@
 				BA1ABBD714C1B1DF00C55CAE /* CantarellRegular.ttf in Resources */,
 				BA1ABBD814C1B1DF00C55CAE /* styles.css in Resources */,
 				BABE403F14CC6389006F15C2 /* verbosVolga.txt in Resources */,
+				BA90691A14D8789F0028C452 /* styles_landscape.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +383,7 @@
 				BA1ABBCC14C1A16C00C55CAE /* HTMLParser.m in Sources */,
 				BA1ABBDE14C2F96F00C55CAE /* OptionsViewController.m in Sources */,
 				BA10B7C314CADCC900DE04CC /* Helper.m in Sources */,
+				BA90691714D873060028C452 /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

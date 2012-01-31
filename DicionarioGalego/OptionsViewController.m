@@ -17,6 +17,7 @@
 @synthesize options;
 @synthesize theOptions;
 @synthesize theOptionsLinks;
+@synthesize searchButton;
 @synthesize selected;
 @synthesize selectedLink;
 @synthesize html;
@@ -58,13 +59,46 @@
     [self setSelected:nil];
     [self setSelectedLink:nil];
     [self setHtml:nil];
+    [self setSearchButton:nil];
     [super viewDidUnload];
+}
+
+-(void) setLandscape
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        searchButton.frame = CGRectMake(30, 217, 420, 37);
+    }
+    else
+    {
+        searchButton.frame = CGRectMake(312, 350, 400, 37);
+    }
+}
+
+-(void) setPortrait
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        searchButton.frame = CGRectMake(20, 238, 280, 37);
+    }
+    else
+    {
+        searchButton.frame = CGRectMake(184, 271, 400, 37);
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        // Return YES for supported orientations
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    }
+    else
+    {
+        // Return YES for supported orientations
+        return YES;
+    }
 }
 
 /*

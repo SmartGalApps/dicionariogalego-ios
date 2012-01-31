@@ -19,7 +19,7 @@
                                 <subviews>
                                     <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" image="portada.png" id="bUO-dQ-LCc">
                                         <rect key="frame" x="85" y="67" width="150" height="150"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="hbx-i9-IwG">
                                         <rect key="frame" x="20" y="266" width="206" height="31"/>
@@ -70,6 +70,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="DicionarioGalego" id="ByG-93-yQi"/>
                     <connections>
+                        <outlet property="label" destination="Eam-PN-w0w" id="tRH-aF-8F1"/>
+                        <outlet property="logoPortada" destination="bUO-dQ-LCc" id="vPp-0u-X0o"/>
                         <outlet property="scrollView" destination="YIV-b5-vMb" id="eBC-gU-XDl"/>
                         <outlet property="searchButton" destination="eJ9-Cy-4x9" id="BR6-Eo-A49"/>
                         <outlet property="termTextField" destination="hbx-i9-IwG" id="FRs-V2-PIR"/>
@@ -98,7 +100,7 @@
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fvg-Jl-o88">
                                 <rect key="frame" x="20" y="238" width="280" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Buscar">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -117,6 +119,7 @@
                     <navigationItem key="navigationItem" title="Opcións" id="UHQ-Lw-dVS"/>
                     <connections>
                         <outlet property="options" destination="CsP-x2-zZt" id="NVT-1D-zRq"/>
+                        <outlet property="searchButton" destination="fvg-Jl-o88" id="ZIg-4E-g3I"/>
                         <segue destination="lcJ-HR-qRv" kind="push" identifier="DefineOption" id="XAB-vx-vcQ"/>
                     </connections>
                 </viewController>
@@ -192,7 +195,7 @@
         <scene sceneID="0Gj-0B-2Jl">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxm-Jy-zqq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="fTf-de-49e" customClass="AboutController" sceneMemberID="viewController">
+                <viewController id="fTf-de-49e" customClass="AboutViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ao4-Xm-Mw6">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -248,7 +251,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="I38-IN-k4m"/>
-        <segue reference="n5N-8r-dka"/>
+        <segue reference="IRY-gV-hxy"/>
+        <segue reference="XAB-vx-vcQ"/>
     </inferredMetricsTieBreakers>
 </document>

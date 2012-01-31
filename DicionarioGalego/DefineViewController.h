@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString* termFromIntegration;
 @property (nonatomic, retain) NSString* termFromMainViewController;
 @property (nonatomic, retain) NSString* htmlDefinition;
+@property (weak, nonatomic) IBOutlet UIWebView *fondo;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *translateButton;

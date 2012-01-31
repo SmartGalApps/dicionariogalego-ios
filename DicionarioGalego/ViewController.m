@@ -18,6 +18,8 @@
 @synthesize termTextField;
 @synthesize searchButton;
 @synthesize scrollView;
+@synthesize logoPortada;
+@synthesize label;
 @synthesize optionsLinks;
 @synthesize options;
 
@@ -55,12 +57,58 @@
     [self setScrollView:nil];
     [self setOptionsLinks:nil];
     [self setOptions:nil];
+    [self setLogoPortada:nil];
+    [self setLabel:nil];
     [super viewDidUnload];
+}
+
+-(void) setLandscape
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        logoPortada.frame = CGRectMake(165, 54, 150, 150);
+        label.frame = CGRectMake(20, 206, 234, 21);
+        termTextField.frame = CGRectMake(20, 228, 320, 31);
+        searchButton.frame = CGRectMake(348, 225, 112, 37);
+    }
+    else
+    {
+        logoPortada.frame = CGRectMake(185, 330, 300, 300);
+        label.frame = CGRectMake(536, 444, 300, 21);
+        termTextField.frame = CGRectMake(536, 481, 220, 31);
+        searchButton.frame = CGRectMake(771, 478, 75, 37);
+    }
+}
+
+-(void) setPortrait
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        logoPortada.frame = CGRectMake(85, 67, 150, 150);
+        label.frame = CGRectMake(20, 221, 280, 21);
+        termTextField.frame = CGRectMake(20, 244, 206, 31);
+        searchButton.frame = CGRectMake(234, 241, 75, 37);
+    }
+    else
+    {
+        logoPortada.frame = CGRectMake(234, 20, 300, 300);
+        label.frame = CGRectMake(224, 405, 300, 21);
+        termTextField.frame = CGRectMake(224, 442, 220, 31);
+        searchButton.frame = CGRectMake(459, 439, 75, 37);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (UIDeviceOrientationIsLandscape(self.interfaceOrientation))
+    {
+        [self setLandscape];
+    }
+    else
+    {
+        [self setPortrait];        
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -80,8 +128,16 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        // Return YES for supported orientations
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    }
+    else
+    {
+        // Return YES for supported orientations
+        return YES;
+    }
 }
 
 /*
@@ -231,17 +287,25 @@
 {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    CGFloat height;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        height = kbSize.width > kbSize.height ? kbSize.height : kbSize.width - 40;
+    }
+    else
+    {
+        height = kbSize.width > kbSize.height ? kbSize.height : kbSize.width + 100;
+    }
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, height, 0.0);
     scrollView.contentInset = contentInsets;
     scrollView.scrollIndicatorInsets = contentInsets;
     
     // If active text field is hidden by keyboard, scroll it so it's visible
     // Your application might not need or want this behavior.
     CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
+    aRect.size.height -= height;
     if (!CGRectContainsPoint(aRect, self.termTextField.frame.origin) ) {
-        CGPoint scrollPoint = CGPointMake(0.0, self.termTextField.frame.origin.y-kbSize.height);
+        CGPoint scrollPoint = CGPointMake(0.0, self.termTextField.frame.origin.y-height);
         [scrollView setContentOffset:scrollPoint animated:YES];
     }
 }
@@ -252,6 +316,18 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     scrollView.contentInset = contentInsets;
     scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+        fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        [self setPortrait];
+    }
+    else
+    {
+        [self setLandscape];
+    }
 }
 
 /*

@@ -18,6 +18,7 @@
 @synthesize conjugateButton;
 @synthesize bottomToolbar;
 @synthesize htmlDefinition;
+@synthesize fondo;
 @synthesize termFromMainViewController;
 @synthesize termFromIntegration;
 @synthesize options;
@@ -81,13 +82,22 @@
     [self setTermFromIntegration:nil];
     [self setOptions:nil];
     [self setOptionsLinks:nil];
+    [self setFondo:nil];
     [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        // Return YES for supported orientations
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    }
+    else
+    {
+        // Return YES for supported orientations
+        return YES;
+    }
 }
 
 /*
