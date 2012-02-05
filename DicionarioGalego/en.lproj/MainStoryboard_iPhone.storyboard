@@ -22,7 +22,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="hbx-i9-IwG">
-                                        <rect key="frame" x="20" y="266" width="206" height="31"/>
+                                        <rect key="frame" x="20" y="252" width="243" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search"/>
@@ -31,10 +31,11 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eJ9-Cy-4x9">
-                                        <rect key="frame" x="234" y="263" width="75" height="37"/>
+                                        <rect key="frame" x="271" y="249" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Buscar">
+                                        <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                        <state key="normal" image="lupa.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -45,11 +46,11 @@
                                             <action selector="searchButton:" destination="2" eventType="touchUpInside" id="khV-uW-zIP"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Introduza o termo a buscar" lineBreakMode="tailTruncation" minimumFontSize="10" id="Eam-PN-w0w">
-                                        <rect key="frame" x="20" y="237" width="280" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Introduza o termo a buscar:" lineBreakMode="tailTruncation" minimumFontSize="10" id="Eam-PN-w0w">
+                                        <rect key="frame" x="20" y="229" width="280" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="kVi-uQ-SCL">
@@ -100,7 +101,7 @@
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fvg-Jl-o88">
                                 <rect key="frame" x="20" y="238" width="280" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Buscar">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -136,7 +137,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="fondo.png" id="Bmf-nR-JW2">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <webView opaque="NO" contentMode="scaleToFill" id="8hU-i0-OHO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
@@ -147,16 +148,18 @@
                                 <rect key="frame" x="0.0" y="372" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Conxugar" id="3cU-R5-BXg">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="C5X-3T-xzq"/>
+                                    <barButtonItem image="btn_ConxuGalego.png" id="MS1-9p-Led">
                                         <connections>
-                                            <action selector="conjugate:" destination="lcJ-HR-qRv" id="HBu-tH-jpz"/>
+                                            <action selector="conjugate:" destination="lcJ-HR-qRv" id="Nf6-Cx-cHP"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Traducir" id="FQk-xx-oCX">
+                                    <barButtonItem image="btn_TradutorGalego.png" id="ncm-yQ-4Kh">
                                         <connections>
-                                            <action selector="translate:" destination="lcJ-HR-qRv" id="XKm-2S-YYd"/>
+                                            <action selector="translate:" destination="lcJ-HR-qRv" id="EKE-AB-ZCq"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="le1-Ih-e6L"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -166,8 +169,10 @@
                     <navigationItem key="navigationItem" title="Definición" id="tib-2h-ziP"/>
                     <connections>
                         <outlet property="bottomToolbar" destination="hma-5Q-dIr" id="cjo-oG-X4q"/>
-                        <outlet property="conjugateButton" destination="3cU-R5-BXg" id="1Fh-WC-ivE"/>
-                        <outlet property="translateButton" destination="FQk-xx-oCX" id="M2E-W8-OK2"/>
+                        <outlet property="conjugateButton" destination="MS1-9p-Led" id="awR-kb-emc"/>
+                        <outlet property="space1" destination="C5X-3T-xzq" id="cqd-kl-F9p"/>
+                        <outlet property="space2" destination="ncm-yQ-4Kh" id="09v-Aw-saC"/>
+                        <outlet property="translateButton" destination="ncm-yQ-4Kh" id="aTL-aM-90T"/>
                         <outlet property="webView" destination="8hU-i0-OHO" id="APy-Ez-zbu"/>
                         <segue destination="EPG-pH-lge" kind="push" identifier="ShowOptions" id="n5N-8r-dka"/>
                     </connections>
@@ -200,58 +205,127 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="DicionarioGalego 1.0" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" minimumFontSize="10" id="XSC-2R-ZyX">
-                                <rect key="frame" x="93" y="27" width="219" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="DicionarioGalego 1.0" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" minimumFontSize="10" id="3lA-cW-MnB">
+                                <rect key="frame" x="103" y="39" width="219" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Aplicación desenvolvida por:" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="KpV-aC-liH">
-                                <rect key="frame" x="20" y="129" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Aplicación desenvolvida por:" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="0bk-fd-Lld">
+                                <rect key="frame" x="30" y="123" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="GalApps" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="5L6-81-ypD">
-                                <rect key="frame" x="20" y="174" width="261" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="contacto@galapps.es" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="fVG-X8-krS">
-                                <rect key="frame" x="20" y="243" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="contacto@galapps.es" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="bLt-UZ-w2N">
+                                <rect key="frame" x="30" y="310" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.17402822539999999" green="0.229398515" blue="0.49456521739999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.30588235289999999" green="0.56078431370000004" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="portada.png" id="YxF-DD-uhu">
-                                <rect key="frame" x="20" y="13" width="69" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="portada.png" id="Pef-LT-ovj">
+                                <rect key="frame" x="30" y="23" width="69" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Esta aplicación obtén as definicións do dicionario dispoñible en http://www.edu.xunta.es/diccionarios/index_rag.html" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" minimumFontSize="10" id="fNl-Rc-aC2">
+                                <rect key="frame" x="-30" y="365" width="380" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="GalApps_iOS_logosimbolo.png" id="qMU-bV-X9A">
+                                <rect key="frame" x="45" y="190" width="250" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="TODA A LINGUA GALEGA NO TEU PETO" lineBreakMode="tailTruncation" minimumFontSize="10" id="2aR-bf-Zsi">
+                                <rect key="frame" x="41" y="255" width="258" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.15402600364963503" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WVx-aY-zaE"/>
+                    <navigationItem key="navigationItem" title="Acerca de" id="WVx-aY-zaE"/>
+                    <connections>
+                        <outlet property="appName" destination="3lA-cW-MnB" id="ELA-H8-4Bn"/>
+                        <outlet property="attribution" destination="fNl-Rc-aC2" id="EBo-3z-N5k"/>
+                        <outlet property="galappsLogo" destination="qMU-bV-X9A" id="b6l-9c-WUg"/>
+                        <outlet property="label" destination="0bk-fd-Lld" id="Z4z-dw-1kL"/>
+                        <outlet property="logoApp" destination="Pef-LT-ovj" id="dea-Ao-lHM"/>
+                        <outlet property="mailLink" destination="bLt-UZ-w2N" id="CLN-5S-jec"/>
+                        <outlet property="slogan" destination="2aR-bf-Zsi" id="m8j-TJ-WH1"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1579" y="578"/>
         </scene>
     </scenes>
     <resources>
+        <image name="GalApps_iOS_logosimbolo.png" width="250" height="62"/>
+        <image name="btn_ConxuGalego.png" width="20" height="20"/>
+        <image name="btn_TradutorGalego.png" width="20" height="20"/>
         <image name="fondo.png" width="480" height="640"/>
+        <image name="lupa.png" width="32" height="38"/>
         <image name="portada.png" width="220" height="220"/>
     </resources>
+    <classes>
+        <class className="AboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="appName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="attribution" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="galappsLogo" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoApp" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="mailLink" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="slogan" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DefineViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DefineViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="conjugate:"/>
+                <relationship kind="action" name="grabURLInBackground:"/>
+                <relationship kind="action" name="translate:"/>
+                <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="conjugateButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="fondo" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="space1" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="space2" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="translateButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="OptionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="search:"/>
+                <relationship kind="outlet" name="options" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="grabURLInBackground:"/>
+                <relationship kind="action" name="searchButton:"/>
+                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoPortada" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="termTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="IRY-gV-hxy"/>
-        <segue reference="XAB-vx-vcQ"/>
-    </inferredMetricsTieBreakers>
 </document>

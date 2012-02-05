@@ -22,6 +22,9 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *translateButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *conjugateButton;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *space1;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *space2;
+
 
 - (IBAction)grabURLInBackground:(id)sender;
 

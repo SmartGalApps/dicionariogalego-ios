@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA0854AC14DEF3D0001D857E /* btn_ConxuGalego.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0854AA14DEF3D0001D857E /* btn_ConxuGalego.png */; };
+		BA0854AD14DEF3D0001D857E /* btn_TradutorGalego.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0854AB14DEF3D0001D857E /* btn_TradutorGalego.png */; };
 		BA10B7C314CADCC900DE04CC /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = BA10B7C214CADCC900DE04CC /* Helper.m */; };
 		BA1ABBCB14C1A16B00C55CAE /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1ABBC814C1A16B00C55CAE /* HTMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BA1ABBCC14C1A16C00C55CAE /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1ABBCA14C1A16B00C55CAE /* HTMLParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -16,8 +18,10 @@
 		BA1ABBD714C1B1DF00C55CAE /* CantarellRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA1ABBD314C1B1DF00C55CAE /* CantarellRegular.ttf */; };
 		BA1ABBD814C1B1DF00C55CAE /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = BA1ABBD414C1B1DF00C55CAE /* styles.css */; };
 		BA1ABBDE14C2F96F00C55CAE /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1ABBDD14C2F96F00C55CAE /* OptionsViewController.m */; };
+		BA80146414DDA03E00F5E229 /* styles_landscape.css in Resources */ = {isa = PBXBuildFile; fileRef = BA80146314DDA03E00F5E229 /* styles_landscape.css */; };
+		BA80148014DEA2B700F5E229 /* lupa.png in Resources */ = {isa = PBXBuildFile; fileRef = BA80147F14DEA2B700F5E229 /* lupa.png */; };
+		BA80148614DEB3ED00F5E229 /* GalApps_iOS_logosimbolo.png in Resources */ = {isa = PBXBuildFile; fileRef = BA80148514DEB3ED00F5E229 /* GalApps_iOS_logosimbolo.png */; };
 		BA90691714D873060028C452 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA90691614D873060028C452 /* AboutViewController.m */; };
-		BA90691A14D8789F0028C452 /* styles_landscape.css in Resources */ = {isa = PBXBuildFile; fileRef = BA90691914D8789F0028C452 /* styles_landscape.css */; };
 		BABE403F14CC6389006F15C2 /* verbosVolga.txt in Resources */ = {isa = PBXBuildFile; fileRef = BABE403E14CC6388006F15C2 /* verbosVolga.txt */; };
 		BAF24C1B14B702ED00B4F0A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C1A14B702ED00B4F0A3 /* UIKit.framework */; };
 		BAF24C1D14B702ED00B4F0A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF24C1C14B702ED00B4F0A3 /* Foundation.framework */; };
@@ -51,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA0854AA14DEF3D0001D857E /* btn_ConxuGalego.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_ConxuGalego.png; sourceTree = "<group>"; };
+		BA0854AB14DEF3D0001D857E /* btn_TradutorGalego.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_TradutorGalego.png; sourceTree = "<group>"; };
 		BA10B7C114CADCC900DE04CC /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		BA10B7C214CADCC900DE04CC /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		BA1ABBC714C1A16B00C55CAE /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
@@ -64,9 +70,11 @@
 		BA1ABBD414C1B1DF00C55CAE /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		BA1ABBDC14C2F96F00C55CAE /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
 		BA1ABBDD14C2F96F00C55CAE /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
+		BA80146314DDA03E00F5E229 /* styles_landscape.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles_landscape.css; sourceTree = "<group>"; };
+		BA80147F14DEA2B700F5E229 /* lupa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lupa.png; sourceTree = "<group>"; };
+		BA80148514DEB3ED00F5E229 /* GalApps_iOS_logosimbolo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GalApps_iOS_logosimbolo.png; sourceTree = "<group>"; };
 		BA90691514D873060028C452 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		BA90691614D873060028C452 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
-		BA90691914D8789F0028C452 /* styles_landscape.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles_landscape.css; sourceTree = "<group>"; };
 		BABE403E14CC6388006F15C2 /* verbosVolga.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = verbosVolga.txt; sourceTree = "<group>"; };
 		BAF24C1614B702ED00B4F0A3 /* DicionarioGalego.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DicionarioGalego.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF24C1A14B702ED00B4F0A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -154,7 +162,7 @@
 			children = (
 				BA1ABBD014C1B1DF00C55CAE /* fonts */,
 				BA1ABBD414C1B1DF00C55CAE /* styles.css */,
-				BA90691914D8789F0028C452 /* styles_landscape.css */,
+				BA80146314DDA03E00F5E229 /* styles_landscape.css */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -284,6 +292,10 @@
 		BAF24C6314B7047C00B4F0A3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BA0854AA14DEF3D0001D857E /* btn_ConxuGalego.png */,
+				BA0854AB14DEF3D0001D857E /* btn_TradutorGalego.png */,
+				BA80148514DEB3ED00F5E229 /* GalApps_iOS_logosimbolo.png */,
+				BA80147F14DEA2B700F5E229 /* lupa.png */,
 				BAF24C6414B7047C00B4F0A3 /* fondo.png */,
 				BAF24C6714B7047C00B4F0A3 /* portada.png */,
 			);
@@ -354,7 +366,11 @@
 				BA1ABBD714C1B1DF00C55CAE /* CantarellRegular.ttf in Resources */,
 				BA1ABBD814C1B1DF00C55CAE /* styles.css in Resources */,
 				BABE403F14CC6389006F15C2 /* verbosVolga.txt in Resources */,
-				BA90691A14D8789F0028C452 /* styles_landscape.css in Resources */,
+				BA80146414DDA03E00F5E229 /* styles_landscape.css in Resources */,
+				BA80148014DEA2B700F5E229 /* lupa.png in Resources */,
+				BA80148614DEB3ED00F5E229 /* GalApps_iOS_logosimbolo.png in Resources */,
+				BA0854AC14DEF3D0001D857E /* btn_ConxuGalego.png in Resources */,
+				BA0854AD14DEF3D0001D857E /* btn_TradutorGalego.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

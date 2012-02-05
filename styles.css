@@ -23,7 +23,6 @@ body {
 	width: 360px;
 	height: 480px;
 	overflow: scroll;
-	background: url('fondo.png');
 }
 b, b > i {
 	margin: 0 2px;

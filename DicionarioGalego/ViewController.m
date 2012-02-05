@@ -12,6 +12,7 @@
 #import "ASIFormDataRequest.h"
 #import "Parser.h"
 #import "Helper.h"
+#import "Reachability.h"
 
 @implementation ViewController
 @synthesize definitionInHtml;
@@ -66,17 +67,17 @@
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        logoPortada.frame = CGRectMake(165, 54, 150, 150);
-        label.frame = CGRectMake(20, 206, 234, 21);
-        termTextField.frame = CGRectMake(20, 228, 320, 31);
-        searchButton.frame = CGRectMake(348, 225, 112, 37);
+        logoPortada.frame = CGRectMake(20, 76, 150, 150);
+        label.frame = CGRectMake(178, 123, 280, 21);
+        termTextField.frame = CGRectMake(178, 146, 243, 31);
+        searchButton.frame = CGRectMake(429, 143, 37, 37);
     }
     else
     {
-        logoPortada.frame = CGRectMake(185, 330, 300, 300);
-        label.frame = CGRectMake(536, 444, 300, 21);
-        termTextField.frame = CGRectMake(536, 481, 220, 31);
-        searchButton.frame = CGRectMake(771, 478, 75, 37);
+        logoPortada.frame = CGRectMake(185, 430, 300, 300);
+        label.frame = CGRectMake(536, 544, 300, 21);
+        termTextField.frame = CGRectMake(536, 581, 220, 31);
+        searchButton.frame = CGRectMake(771, 578, 37, 37);
     }
 }
 
@@ -85,17 +86,23 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         logoPortada.frame = CGRectMake(85, 67, 150, 150);
-        label.frame = CGRectMake(20, 221, 280, 21);
-        termTextField.frame = CGRectMake(20, 244, 206, 31);
-        searchButton.frame = CGRectMake(234, 241, 75, 37);
+        label.frame = CGRectMake(20, 229, 280, 21);
+        termTextField.frame = CGRectMake(20, 252, 243, 31);
+        searchButton.frame = CGRectMake(271, 249, 37, 37);
     }
     else
     {
-        logoPortada.frame = CGRectMake(234, 20, 300, 300);
-        label.frame = CGRectMake(224, 405, 300, 21);
-        termTextField.frame = CGRectMake(224, 442, 220, 31);
-        searchButton.frame = CGRectMake(459, 439, 75, 37);
+        logoPortada.frame = CGRectMake(234, 147, 300, 300);
+        label.frame = CGRectMake(224, 532, 300, 21);
+        termTextField.frame = CGRectMake(224, 569, 265, 31);
+        searchButton.frame = CGRectMake(497, 566, 37, 37);
     }
+}
+
+-(BOOL) isConnected
+{
+    Reachability *internetReachable = [Reachability reachabilityForInternetConnection];
+    return [internetReachable isReachable];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -151,8 +158,17 @@
         return;
     }
     if ([self.termTextField.text length] > 0) {
-        [self grabURLInBackground:self];
-        [Helper showAlert];
+        if ([self isConnected])
+        {
+            [self grabURLInBackground:self];
+            [Helper showAlert];
+        }
+        else
+        {
+            UIAlertView *info = [[UIAlertView alloc] 
+                                 initWithTitle:nil message:NSLocalizedString(@"Necesitas conexión a internet.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles: nil];
+            [info show];
+        }
     }
 }
 
@@ -319,14 +335,13 @@
 }
 
 -(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-        fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    if (UIDeviceOrientationIsLandscape(self.interfaceOrientation))
     {
-        [self setPortrait];
+        [self setLandscape];
     }
     else
     {
-        [self setLandscape];
+        [self setPortrait];
     }
 }
 

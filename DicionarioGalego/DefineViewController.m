@@ -11,12 +11,15 @@
 #import "Helper.h"
 #import "Parser.h"
 #import "ASIFormDataRequest.h"
+#import "Reachability.h"
 
 @implementation DefineViewController
 @synthesize webView;
 @synthesize translateButton;
 @synthesize conjugateButton;
 @synthesize bottomToolbar;
+@synthesize space1;
+@synthesize space2;
 @synthesize htmlDefinition;
 @synthesize fondo;
 @synthesize termFromMainViewController;
@@ -32,11 +35,49 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+
+-(BOOL) isConnected
+{
+    Reachability *internetReachable = [Reachability reachabilityForInternetConnection];
+    return [internetReachable isReachable];
+}
+
+
+
+-(void) setLandscape
+{
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+//    {
+//        space1.width = 180;
+//        space2.width = 150;
+//    }
+//    else
+//    {
+//        space1.width = 300;
+//        space2.width = 300;
+//    }
+}
+
+-(void) setPortrait
+{
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+//    {
+//        space1.width = 105;
+//        space2.width = 65;
+//    }
+//    else
+//    {
+//        space1.width = 300;
+//        space2.width = 300;
+//    }
+}
+
 /*
  * Recarga el HTML. Se limpia el fondo para ponerlo con CSS
  */
 -(void)reloadHtml
 {
+    [Helper dismissAlert];
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSURL *baseURL = [NSURL fileURLWithPath:path];
     self.webView.opaque = NO;
@@ -45,6 +86,20 @@
 }
 #pragma mark - View lifecycle
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (UIDeviceOrientationIsLandscape(self.interfaceOrientation))
+    {
+        [self setLandscape];
+    }
+    else
+    {
+        [self setPortrait];        
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,8 +107,17 @@
     // Viene de integración, hay que buscar el término y ocultar la barra
     if (self.termFromIntegration != nil)
     {
-        [self grabURLInBackground:self];
-        [self.bottomToolbar setHidden:TRUE];
+        if ([self isConnected])
+        {
+            [self grabURLInBackground:self];
+            [self.bottomToolbar setHidden:TRUE];
+        }
+        else
+        {
+            UIAlertView *info = [[UIAlertView alloc] 
+                                 initWithTitle:nil message:NSLocalizedString(@"Necesitas conexión a internet.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles: nil];
+            [info show];
+        }
     }
     else
     {
@@ -61,11 +125,11 @@
         [self.bottomToolbar setHidden:FALSE];
         if ([Helper existsVerb:self.termFromMainViewController])
         {
-            [self.bottomToolbar setItems:[[NSArray alloc] initWithObjects:self.translateButton,self.conjugateButton,nil] animated:TRUE];
+            [self.bottomToolbar setItems:[[NSArray alloc] initWithObjects:self.space1, self.conjugateButton,self.translateButton,self.space1,nil] animated:TRUE];
         }
         else
         {
-            [self.bottomToolbar setItems:[[NSArray alloc] initWithObjects:self.translateButton,nil] animated:TRUE];
+            [self.bottomToolbar setItems:[[NSArray alloc] initWithObjects:self.space1, self.translateButton,self.space1,nil] animated:TRUE];
         }
         [self reloadHtml];
     }
@@ -83,6 +147,8 @@
     [self setOptions:nil];
     [self setOptionsLinks:nil];
     [self setFondo:nil];
+    [self setSpace1:nil];
+    [self setSpace2:nil];
     [super viewDidUnload];
 }
 
@@ -228,6 +294,19 @@
         segue.destinationViewController;
         optionsViewController.theOptionsLinks = self.optionsLinks;
         optionsViewController.theOptions = self.options;
+    }
+}
+
+
+
+-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if (UIDeviceOrientationIsLandscape(self.interfaceOrientation))
+    {
+        [self setLandscape];
+    }
+    else
+    {
+        [self setPortrait];
     }
 }
 

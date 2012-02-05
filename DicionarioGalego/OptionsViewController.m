@@ -67,11 +67,12 @@
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        searchButton.frame = CGRectMake(30, 217, 420, 37);
+        searchButton.frame = CGRectMake(123, 219, 235, 37);
+        options.frame = CGRectMake(0, 0, 480, 216);
     }
     else
     {
-        searchButton.frame = CGRectMake(312, 350, 400, 37);
+        searchButton.frame = CGRectMake(312, 280, 400, 37);
     }
 }
 
@@ -80,10 +81,24 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         searchButton.frame = CGRectMake(20, 238, 280, 37);
+        options.frame = CGRectMake(0, 0, 320, 216);
     }
     else
     {
         searchButton.frame = CGRectMake(184, 271, 400, 37);
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (UIDeviceOrientationIsLandscape(self.interfaceOrientation))
+    {
+        [self setLandscape];
+    }
+    else
+    {
+        [self setPortrait];        
     }
 }
 
@@ -229,8 +244,19 @@ numberOfRowsInComponent:(NSInteger)component
 		DefineViewController *defineViewController = 
         segue.destinationViewController;
         defineViewController.htmlDefinition = self.html;
-        defineViewController.termFromIntegration = self.selected;
+        defineViewController.termFromMainViewController = self.selected;
 	}
+}
+
+-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if (UIDeviceOrientationIsLandscape(self.interfaceOrientation))
+    {
+        [self setLandscape];
+    }
+    else
+    {
+        [self setPortrait];
+    }
 }
 
 @end
