@@ -1,0 +1,4 @@
+dicionariogalego-ios
+====================
+
+DicionarioGalego iOS
