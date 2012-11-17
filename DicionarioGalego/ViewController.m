@@ -12,6 +12,7 @@
 #import "ASIFormDataRequest.h"
 #import "Parser.h"
 #import "Helper.h"
+#import "HtmlDecorator.h"
 #import "Reachability.h"
 
 @implementation ViewController
@@ -160,7 +161,8 @@
     if ([self.termTextField.text length] > 0) {
         if ([self isConnected])
         {
-            [self grabURLInBackground:self];
+//            [self grabURLInBackground:self];
+            [self searchNouns:self];
             [Helper showAlert];
         }
         else
@@ -218,12 +220,29 @@
 - (IBAction)grabURLInBackground:(id)sender
 {
     NSMutableString *urlString = [NSMutableString string];
-    [urlString appendString:@"http://www.edu.xunta.es/diccionarios/BuscaTermo.jsp"];
-    NSURL *url = [NSURL URLWithString:urlString];
+    [urlString appendString:@"http://www.realacademiagalega.org/rag_dicionario/searchNoun.do?nounTitle="];
+    [urlString appendString:self.termTextField.text];
+    NSString * finalURLString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:finalURLString];
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setPostValue:self.termTextField.text forKey:@"Termo"];
+//    [request setPostValue:self.termTextField.text forKey:@"Termo"];
     [request setDelegate:self];
+    [request setStringEncoding:NSUnicodeStringEncoding];
+    [request startAsynchronous];
+}
+
+- (void)searchNouns:(id)sender
+{
+    NSMutableString *urlString = [NSMutableString string];
+    [urlString appendString:@"http://www.realacademiagalega.org/rag_dicionario/searchNouns.do?term="];
+    [urlString appendString:self.termTextField.text];
+    NSString * finalURLString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:finalURLString];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setStringEncoding:NSUnicodeStringEncoding];
     [request startAsynchronous];
 }
 
@@ -238,8 +257,22 @@
     Parser *parser = [[Parser alloc] init];
     parser.delegate = self;
     parser.word = self.termTextField.text;
-    [parser parse:responseString];
+    NSMutableArray* definitions = [parser parseSearchNounsResponse:responseString];
     [Helper dismissAlert];
+    
+    if (definitions == nil)
+    {
+        [self doOnNotFound];
+        return;
+    }
+    else
+    {
+        HtmlDecorator* htmlDecorator = [[HtmlDecorator alloc] init];
+        NSString* html = [htmlDecorator decorate:definitions forWord:self.termTextField.text];
+        
+        self.definitionInHtml = html;
+        [self performSegueWithIdentifier:@"Define" sender:self];
+    }
 }
 
 /*
@@ -247,7 +280,8 @@
  */
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [Helper dismissAlert];
+    [self doOnNotFound];
 }
 
 #pragma mark - ParserDelegate methods

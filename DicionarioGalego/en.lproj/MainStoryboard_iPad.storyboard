@@ -50,7 +50,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="2" id="BAA-HL-gJw"/>
+                                            <outlet property="delegate" destination="2" id="JoR-CH-ATl"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -73,6 +73,7 @@
                     <connections>
                         <outlet property="label" destination="MuH-94-Z8T" id="qde-hx-qR3"/>
                         <outlet property="logoPortada" destination="Ob6-1b-2cD" id="TAO-jW-bDp"/>
+                        <outlet property="scrollView" destination="v6M-BN-g1I" id="dAh-eg-Igv"/>
                         <outlet property="searchButton" destination="nWq-4t-fej" id="R3v-pp-eLY"/>
                         <outlet property="termTextField" destination="PFK-nj-bR8" id="has-Sa-O2b"/>
                         <segue destination="KUJ-4U-YCq" kind="push" identifier="Define" id="ben-ds-aU9"/>
@@ -207,7 +208,7 @@
                                 <rect key="frame" x="259" y="575" width="250" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Esta aplicación obtén as definicións do dicionario dispoñible en http://www.edu.xunta.es/diccionarios/index_rag.html" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" minimumFontSize="10" id="RWg-Sd-Ome">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Esta aplicación obtén as definicións do dicionario da RAG dispoñible en http://www.realacademiagalega.org" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" minimumFontSize="10" id="RWg-Sd-Ome">
                                 <rect key="frame" x="122" y="911" width="524" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -225,7 +226,7 @@
                                 <color key="textColor" white="0.89934990879999999" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Aplicación desenvolvida por:" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="IBu-s4-lEB">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Aplicación desenvolvida por" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="IBu-s4-lEB">
                                 <rect key="frame" x="244" y="475" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

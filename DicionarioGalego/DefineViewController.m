@@ -12,6 +12,7 @@
 #import "Parser.h"
 #import "ASIFormDataRequest.h"
 #import "Reachability.h"
+#import "HtmlDecorator.h"
 
 @implementation DefineViewController
 @synthesize webView;
@@ -109,7 +110,8 @@
     {
         if ([self isConnected])
         {
-            [self grabURLInBackground:self];
+//            [self grabURLInBackground:self];
+            [self searchNouns:self];
             [self.bottomToolbar setHidden:TRUE];
         }
         else
@@ -183,11 +185,26 @@
     
 }
 
+- (void)searchNouns:(id)sender
+{
+    NSMutableString *urlString = [NSMutableString string];
+    [urlString appendString:@"http://www.realacademiagalega.org/rag_dicionario/searchNouns.do?term="];
+    [urlString appendString:self.termFromIntegration];
+    NSString * finalURLString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:finalURLString];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setDelegate:self];
+    [request setStringEncoding:NSUnicodeStringEncoding];
+    [request startAsynchronous];
+}
+
 /*
  * Botón de integración
  */
 - (IBAction)translate:(id)sender {
-    NSString *urlString = [[NSString alloc] initWithFormat:@"traduce://%@", self.termFromMainViewController];
+    NSString* encodedText = [self.termFromMainViewController stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [[NSString alloc] initWithFormat:@"traduce://%@", encodedText];
     NSURL *myURL = [NSURL URLWithString:urlString];
     if ([[UIApplication sharedApplication] canOpenURL:myURL])
     {
@@ -205,7 +222,8 @@
  * Botón de integración
  */
 - (IBAction)conjugate:(id)sender {
-    NSString *urlString = [[NSString alloc] initWithFormat:@"conxuga://%@", self.termFromMainViewController];
+    NSString* encodedText = [self.termFromMainViewController stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [[NSString alloc] initWithFormat:@"conxuga://%@", encodedText];
     NSURL *myURL = [NSURL URLWithString:urlString];
     if ([[UIApplication sharedApplication] canOpenURL:myURL])
     {
@@ -221,14 +239,37 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+//    // Use when fetching text data
+//    NSString *responseString = [request responseString];
+//    
+//    Parser *parser = [[Parser alloc] init];
+//    parser.delegate = self;
+//    parser.word = self.termFromIntegration;
+//    [parser parse:responseString];
+//    [Helper dismissAlert];
+    
     // Use when fetching text data
     NSString *responseString = [request responseString];
     
     Parser *parser = [[Parser alloc] init];
     parser.delegate = self;
     parser.word = self.termFromIntegration;
-    [parser parse:responseString];
+    NSMutableArray* definitions = [parser parseSearchNounsResponse:responseString];
     [Helper dismissAlert];
+    
+    if (definitions == nil)
+    {
+        [self doOnNotFound];
+        return;
+    }
+    else
+    {
+        HtmlDecorator* htmlDecorator = [[HtmlDecorator alloc] init];
+        NSString* html = [htmlDecorator decorate:definitions forWord:self.termFromIntegration];
+        
+        self.htmlDefinition = html;
+        [self reloadHtml];
+    }
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

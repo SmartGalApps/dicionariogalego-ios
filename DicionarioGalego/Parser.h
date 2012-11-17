@@ -17,13 +17,13 @@
 
 @end
 
-@interface Parser : NSObject {
-    NSString *word;
-}
+@interface Parser : NSObject
 
 @property (nonatomic, retain) NSString* word;
 @property (nonatomic, retain) id<ParserDelegate> delegate;
 
 -(void)parse:(NSString *) text;
+
+-(NSMutableArray* )parseSearchNounsResponse:(NSString *) text;
 
 @end

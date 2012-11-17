@@ -12,6 +12,8 @@
 
 +(NSURL *) getUrl:(NSString *)term;
 
++(NSURL *) searchNouns:(NSString *)term;
+
 +(void)showAlert;
 +(void)dismissAlert;
 

@@ -88,7 +88,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FDZ-EQ-4to" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="EPG-pH-lge" customClass="OptionsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vzv-kc-kmu">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" id="CsP-x2-zZt">
@@ -132,7 +132,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwn-Zs-2Qm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="DefineViewController" id="lcJ-HR-qRv" customClass="DefineViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ovb-bz-lZ1">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="fondo.png" id="Bmf-nR-JW2">
@@ -205,14 +205,14 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="DicionarioGalego 1.0" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" minimumFontSize="10" id="3lA-cW-MnB">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="DicionarioGalego 2.0" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" minimumFontSize="10" id="3lA-cW-MnB">
                                 <rect key="frame" x="103" y="39" width="219" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Aplicación desenvolvida por:" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="0bk-fd-Lld">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Aplicación desenvolvida por" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="0bk-fd-Lld">
                                 <rect key="frame" x="30" y="123" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -230,8 +230,8 @@
                                 <rect key="frame" x="30" y="23" width="69" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Esta aplicación obtén as definicións do dicionario dispoñible en http://www.edu.xunta.es/diccionarios/index_rag.html" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" minimumFontSize="10" id="fNl-Rc-aC2">
-                                <rect key="frame" x="-30" y="365" width="380" height="29"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Esta aplicación obtén as definicións do dicionario da RAG dispoñible en http://www.realacademiagalega.org" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" minimumFontSize="10" id="fNl-Rc-aC2">
+                                <rect key="frame" x="-82" y="365" width="485" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -274,55 +274,6 @@
         <image name="lupa.png" width="32" height="38"/>
         <image name="portada.png" width="220" height="220"/>
     </resources>
-    <classes>
-        <class className="AboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="appName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="attribution" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="galappsLogo" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoApp" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="mailLink" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="slogan" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DefineViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DefineViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="conjugate:"/>
-                <relationship kind="action" name="grabURLInBackground:"/>
-                <relationship kind="action" name="translate:"/>
-                <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="conjugateButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="fondo" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="space1" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="space2" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="translateButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="OptionsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="search:"/>
-                <relationship kind="outlet" name="options" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="grabURLInBackground:"/>
-                <relationship kind="action" name="searchButton:"/>
-                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="logoPortada" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="termTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

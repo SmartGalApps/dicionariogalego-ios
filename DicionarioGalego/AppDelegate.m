@@ -29,8 +29,8 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     // O termo a buscar
-    NSString *term = [[url absoluteString] substringFromIndex:9];
-    
+//    NSString *term = [[url absoluteString] substringFromIndex:9];
+    NSString *term = [[[url absoluteString] substringFromIndex:9] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     // Primeira vez que se arranca a integración
     if (self.defineViewController == nil)
     {
@@ -45,7 +45,7 @@
     {
         // Asigno o termo a buscar e busco (non se vai chamar a viewDidLoad, que é onde se conecta ao servidor a primeira vez)
         self.defineViewController.termFromIntegration = term;
-        [self.defineViewController grabURLInBackground:self];
+        [self.defineViewController searchNouns:self.defineViewController];
     }
 
     // Creo a pantalla principal para metela no UINavigationController

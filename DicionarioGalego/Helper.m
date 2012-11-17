@@ -15,7 +15,16 @@ static UIAlertView * loadingAlert;
 +(NSURL *) getUrl:(NSString *)term
 {
     NSMutableString *urlString = [NSMutableString string];
-    [urlString appendString:@"http://www.edu.xunta.es/diccionarios/BuscaTermo.jsp?Termo="];
+//    [urlString appendString:@"http://www.edu.xunta.es/diccionarios/BuscaTermo.jsp?Termo="];
+    [urlString appendString:@"http://www.realacademiagalega.org/rag_dicionario/searchNoun.do?nounTitle="];
+    [urlString appendString:term];
+    return [NSURL URLWithString:urlString];
+}
+
++(NSURL *) searchNouns:(NSString *)term
+{
+    NSMutableString *urlString = [NSMutableString string];
+    [urlString appendString:@"http://www.realacademiagalega.org/rag_dicionario/searchNouns.do?term="];
     [urlString appendString:term];
     return [NSURL URLWithString:urlString];
 }
@@ -53,7 +62,7 @@ static UIAlertView * loadingAlert;
      [NSCharacterSet newlineCharacterSet]];
     for (NSString* line in lines)
     {
-        if ([line isEqualToString:verb])
+        if ([line caseInsensitiveCompare:verb] == NSOrderedSame)
         {
             return TRUE;
         }

@@ -27,6 +27,7 @@
 
 
 - (IBAction)grabURLInBackground:(id)sender;
+- (void)searchNouns:(id)sender;
 
 - (IBAction)translate:(id)sender;
 - (IBAction)conjugate:(id)sender;
